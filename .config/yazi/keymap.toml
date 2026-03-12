@@ -2,3 +2,10 @@
 on = "<F1>"
 run = 'shell --block "/Users/vishudh/.config/cheat/cheat.sh"'
 desc = "Open cheat sheet"
+
+# vcs-files plugin
+# keymap.toml
+[[mgr.prepend_keymap]]
+on   = [ "g", "c" ]
+run  = "plugin vcs-files"
+desc = "Show Git file changes"
