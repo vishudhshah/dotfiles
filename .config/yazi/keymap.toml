@@ -1,0 +1,4 @@
+[[mgr.prepend_keymap]]
+on = "<F1>"
+run = 'shell --block "/Users/vishudh/.config/cheat/cheat.sh"'
+desc = "Open cheat sheet"

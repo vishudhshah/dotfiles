@@ -1,0 +1,51 @@
+# ─── Theme ───
+# Ghostty ships with 250+ built-in themes. A few great dark options:
+# Catppuccin Mocha | Tokyo Night | Rose Pine | Gruvbox Dark | nord
+# Run `ghostty +list-themes` to browse all of them.
+theme = Material Design Colors
+# uses ansi theme in yazi file previews (using bat), so keep in mind if want to use same in vim
+
+
+# ─── Fonts ───
+font-size = 14
+font-family = MonaspiceNe NFM
+font-family-italic = MonaspiceRn NFM
+font-family-bold-italic = MonaspiceRn NFM
+# OpenType features
+font-feature = calt, liga, ss01, ss02, ss03, ss04, ss09, cv01=2, cv02=1, cv10=1, cv19=1, cv31=1
+font-thicken = true
+
+
+# ─── Window ───
+title = Ghostty 👻
+background = #26333a
+# Changing this configuration might require restarting Ghostty completely.
+background-opacity = 0.8
+background-blur = 10
+background-image = /Users/vishudh/Documents/Coding Projects/GitHub/ChromePaper/misc/God of War_20210724153137.png
+background-image-opacity = 0.2
+background-image-fit = cover
+maximize = true
+# Don't prompt when closing a tab/window
+confirm-close-surface = false
+macos-titlebar-style = tabs
+cursor-style = block
+cursor-style-blink = false
+cursor-color = #5fb3f9
+cursor-text = #293339
+mouse-hide-while-typing = true
+quit-after-last-window-closed = true
+window-padding-balance = true
+
+
+# ─── Shell integration ───
+# Ghostty auto-injects its own shell integration for zsh.
+# Features: https://ghostty.org/docs/config/reference#shell-integration-features
+shell-integration = zsh
+shell-integration-features = no-cursor
+
+
+# ─── Keybindings ───
+# Tab navigation
+# keybind = cmd+option+right=next_tab
+# keybind = cmd+option+left=previous_tab
