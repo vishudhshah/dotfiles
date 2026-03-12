@@ -1,0 +1,4 @@
+# change separator style
+[status]
+sep_left = { open = "", close = "\uE0B0" }
+sep_right = { open = "\uE0B2", close = "" }
