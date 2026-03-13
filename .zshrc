@@ -182,3 +182,8 @@ function y() {
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+# Git add, commit and push in one command
+gacp() {
+  ga . && git commit -m "$*" && gp
+}
