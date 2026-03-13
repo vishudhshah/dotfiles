@@ -143,22 +143,87 @@
       "keyIcon": "󰌢"
     },
     {
+      "type": "kernel",
+      "keyIcon": ""
+    },
+    {
       "type": "uptime",
       "keyIcon": ""
+    },
+    {
+      "type": "packages",
+      "keyIcon": "󰏖",
+      "disabled": [
+        "winget"
+      ],
+      "combined": false
     },
     {
       "type": "shell",
       "keyIcon": ""
     },
     {
+      "type": "display",
+      "keyIcon": "󰍹",
+      "compactType": "none",
+      "preciseRefreshRate": false,
+      "order": null
+    },
+    {
+      "type": "de",
+      "keyIcon": ""
+    },
+    {
+      "type": "wm",
+      "keyIcon": "",
+      "detectPlugin": true
+    },
+    {
+      "type": "wmtheme",
+      "keyIcon": "󰓸"
+    },
+    {
+      "type": "theme",
+      "keyIcon": "󰉼"
+    },
+    {
+      "type": "icons",
+      "keyIcon": ""
+    },
+    {
+      "type": "font",
+      "keyIcon": ""
+    },
+    {
+      "type": "cursor",
+      "keyIcon": "󰆿"
+    },
+    {
       "type": "terminal",
       "keyIcon": ""
     },
     {
+      "type": "terminalfont",
+      "keyIcon": ""
+    },
+    {
       "type": "cpu",
       "keyIcon": "",
-      "temp": true,
+      "temp": false,
       "showPeCoreCount": false
+    },
+    {
+      "type": "gpu",
+      "keyIcon": "󰾲",
+      "driverSpecific": false,
+      "detectionMethod": "auto",
+      "temp": false,
+      "hideType": "none",
+      "percent": {
+        "green": 50,
+        "yellow": 80,
+        "type": 0
+      }
     },
     {
       "type": "memory",
@@ -170,21 +235,49 @@
       }
     },
     {
+      "type": "swap",
+      "percent": {
+        "green": 50,
+        "yellow": 80,
+        "type": 0
+      },
+      "keyIcon": "󰓡",
+      "separate": false
+    },
+    {
       "type": "disk",
       "keyIcon": "",
       "showRegular": true,
-      "showExternal": false,
+      "showExternal": true,
       "showHidden": false,
       "showSubvolumes": false,
-      "showReadOnly": false,
+      "showReadOnly": true,
       "showUnknown": false,
-      "folders": "/",
+      "folders": "",
+      "hideFolders": "",
+      "hideFS": "",
       "useAvailable": false,
       "percent": {
         "green": 50,
         "yellow": 80,
         "type": 0
       }
+    },
+    {
+      "type": "localip",
+      "keyIcon": "󰩟",
+      "showIpv4": true,
+      "showIpv6": false,
+      "showMac": false,
+      "showLoop": false,
+      "showPrefixLen": true,
+      "showMtu": false,
+      "showSpeed": false,
+      "showFlags": false,
+      "compact": false,
+      "defaultRouteOnly": true,
+      "showAllIps": false,
+      "namePrefix": ""
     },
     {
       "type": "battery",
@@ -195,6 +288,14 @@
         "yellow": 20,
         "type": 0
       }
+    },
+    {
+      "type": "poweradapter",
+      "keyIcon": "󰚥"
+    },
+    {
+      "type": "locale",
+      "keyIcon": ""
     },
     {
       "type": "command",
