@@ -16,15 +16,17 @@ return {
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  -- Treesitter with extra languages
+  {
+  	"nvim-treesitter/nvim-treesitter",
+  	opts = {
+  		ensure_installed = {
+  			"vim", "lua", "vimdoc",
+        "html", "css",
+        "c", "cpp", "python", "javascript", "java", "latex"
+  		},
+  	},
+  },
 
   -- Added by VS
 
@@ -105,5 +107,70 @@ return {
       matrix_pixel_threshold = 0.5,
       cursor_color = "#5fb3f9",
     },
-  }
+  },
+
+  -- nvim-ufo for code folding
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = "kevinhwang91/promise-async",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require("ufo").setup({
+        provider_selector = function()
+          return { "treesitter", "indent" }
+        end,
+      })
+
+      vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+      vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+      vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+      vim.keymap.set("n", "zm", require("ufo").closeFoldsWith)
+
+      vim.keymap.set("n", "K", function()
+        local winid = require("ufo").peekFoldedLinesUnderCursor()
+        if not winid then
+          vim.lsp.buf.hover()
+        end
+      end)
+    end,
+  },
+  {
+    "luukvbaal/statuscol.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      local builtin = require("statuscol.builtin")
+
+      -- Custom fold indicator: arrow only, no depth digits
+      local function fold_indicator()
+        local lnum = vim.v.lnum
+        local closed = vim.fn.foldclosed(lnum)
+        local foldlevel = vim.fn.foldlevel(lnum)
+        local prev_foldlevel = vim.fn.foldlevel(lnum - 1)
+
+        if foldlevel == 0 then
+          return " "  -- not foldable, blank
+        end
+
+        if closed == lnum then
+          return "▶"  -- fold starts here and is closed
+        end
+
+        if foldlevel > prev_foldlevel then
+          return "▼"  -- fold starts here and is open
+        end
+
+        return " "  -- inside a fold, blank
+      end
+
+      require("statuscol").setup({
+        relculright = true,
+        segments = {
+          { text = { fold_indicator }, click = "v:lua.ScFa" },
+          { text = { " " } },  -- spacer
+          { text = { "%s" }, click = "v:lua.ScSa" },
+          { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+        },
+      })
+    end,
+  },
 }
