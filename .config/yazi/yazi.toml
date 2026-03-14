@@ -5,8 +5,9 @@ show_hidden = true
 [preview]
 max_width  = 2000
 max_height = 2000
+image_delay = 10
 
-# git.yazi plugin
+# git plugin
 [[plugin.prepend_fetchers]]
 id  = "git"
 url = "*"

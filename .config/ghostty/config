@@ -1,12 +1,18 @@
 # ─── Theme ───
+
 # Ghostty ships with 250+ built-in themes. A few great dark options:
 # Catppuccin Mocha | Tokyo Night | Rose Pine | Gruvbox Dark | nord
 # Run `ghostty +list-themes` to browse all of them.
 theme = Material Design Colors
 # uses ansi theme in yazi file previews (using bat), so keep in mind if want to use same in vim
 
+# Options: official, blueprint, chalkboard, microchip, glass,
+# holographic, paper, retro, xray, custom
+macos-icon = holographic
+
 
 # ─── Fonts ───
+
 font-size = 14
 font-family = MonaspiceNe NFM
 font-family-italic = MonaspiceRn NFM
@@ -17,6 +23,7 @@ font-thicken = true
 
 
 # ─── Window ───
+
 title = Ghostty 👻
 background = #26333a
 # Changing this configuration might require restarting Ghostty completely.
@@ -39,6 +46,7 @@ window-padding-balance = true
 
 
 # ─── Shell integration ───
+
 # Ghostty auto-injects its own shell integration for zsh.
 # Features: https://ghostty.org/docs/config/reference#shell-integration-features
 shell-integration = zsh
@@ -46,6 +54,7 @@ shell-integration-features = no-cursor
 
 
 # ─── Keybindings ───
+
 # Tab navigation
 # keybind = cmd+option+right=next_tab
 # keybind = cmd+option+left=previous_tab
