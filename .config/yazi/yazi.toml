@@ -17,3 +17,13 @@ run = "git"
 id  = "git"
 url = "*/"
 run = "git"
+
+# rich-preview plugin
+[plugin]
+prepend_previewers = [
+    { url = "*.csv", run = "rich-preview"}, # csv files
+    { url = "*.md", run = "rich-preview" }, # markdown (.md) files
+    { url = "*.rst", run = "rich-preview"}, # restructured text (.rst) files
+    { url = "*.ipynb", run = "rich-preview"}, # jupyter notebooks (.ipynb)
+    { url = "*.json", run = "rich-preview"}, # json (.json) files
+]
