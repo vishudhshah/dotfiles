@@ -49,13 +49,14 @@ link() {
 # ── create symlinks ───────────────────────────
 mkdir -p ~/.config
 
-link "$DOTFILES/.zshrc"              "$HOME/.zshrc"
-link "$DOTFILES/.config/btop"        "$HOME/.config/btop"
-link "$DOTFILES/.config/cheat"       "$HOME/.config/cheat"
-link "$DOTFILES/.config/fastfetch"   "$HOME/.config/fastfetch"
-link "$DOTFILES/.config/ghostty"     "$HOME/.config/ghostty"
-link "$DOTFILES/.config/nvim"        "$HOME/.config/nvim"
-link "$DOTFILES/.config/yazi"        "$HOME/.config/yazi"
+link "$DOTFILES/.zshrc"                     "$HOME/.zshrc"
+link "$DOTFILES/.config/btop"               "$HOME/.config/btop"
+link "$DOTFILES/.config/cheat"              "$HOME/.config/cheat"
+link "$DOTFILES/.config/fastfetch"          "$HOME/.config/fastfetch"
+link "$DOTFILES/.config/ghostty"            "$HOME/.config/ghostty"
+link "$DOTFILES/.config/nvim"               "$HOME/.config/nvim"
+link "$DOTFILES/.config/yazi"               "$HOME/.config/yazi"
+link "$DOTFILES/.config/ghostty-ai-themes"  "$HOME/.config/ghostty-ai-themes"
 # add more lines here as your dotfiles grow
 
 # ── install homebrew if missing ───────────────
