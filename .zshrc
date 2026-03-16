@@ -172,7 +172,7 @@ open('$file', 'w').writelines(lines)
 }
 
 # ghostty-ai-themes config
-source "$(brew --prefix)/share/ghostty-ai-themes.zsh"
+source "/opt/homebrew/share/ghostty-ai-themes.zsh"
 
 # yazi shell wrapper
 function y() {
