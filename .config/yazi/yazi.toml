@@ -5,7 +5,7 @@ show_hidden = true
 [preview]
 max_width  = 2000
 max_height = 2000
-image_delay = 10
+image_delay = 1
 
 # git plugin
 [[plugin.prepend_fetchers]]
