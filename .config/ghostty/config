@@ -10,6 +10,13 @@ theme = Material Design Colors
 # holographic, paper, retro, xray, custom
 macos-icon = holographic
 
+cursor-style = block
+cursor-style-blink = false
+cursor-color = #37b6ff
+# cursor-color = #5bf19e
+# cursor-color = #fed031
+cursor-text = #293339
+mouse-hide-while-typing = true
 
 # ─── Fonts ───
 
@@ -36,11 +43,6 @@ maximize = true
 # Don't prompt when closing a tab/window
 confirm-close-surface = false
 macos-titlebar-style = tabs
-cursor-style = block
-cursor-style-blink = false
-cursor-color = #5fb3f9
-cursor-text = #293339
-mouse-hide-while-typing = true
 quit-after-last-window-closed = true
 window-padding-balance = true
 
