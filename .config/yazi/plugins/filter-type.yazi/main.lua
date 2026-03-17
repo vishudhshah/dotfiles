@@ -1,4 +1,9 @@
-local root = ya.sync(function() return cx.active.current.cwd end)
+local root = ya.sync(function()
+  local cwd = tostring(cx.active.current.cwd)
+  local path = cwd:match("//(Users/.+)$")
+  if path then return Url("/" .. path) end
+  return cx.active.current.cwd
+end)
 
 local function entry(_, opt)
   local cwd_url = root()
@@ -24,11 +29,15 @@ local function entry(_, opt)
   local id = ya.id("ft")
   local search_cwd = cwd_url:into_search("mdfind: " .. opt.args[1])
   ya.emit("cd", { Url(search_cwd) })
-  ya.emit("update_files", { op = fs.op("part", { id = id, url = Url(search_cwd), files = {} }) })
+  ya.emit("update_files", {
+    op = fs.op("part", {
+      id = id, url = Url(search_cwd), files = {}
+    })
+  })
 
   local files = {}
   for line in output.stdout:gmatch("[^\0]+") do
-    line = line:match("^%s*(.-)%s*$")  -- trim whitespace
+    line = line:match("^%s*(.-)%s*$")
     if line ~= "" then
       local filename = line:match("^" .. root_str:gsub("([%(%)%.%%%+%-%*%?%[%^%$])", "%%%1") .. "/([^/]+)$")
       if filename then
@@ -41,8 +50,16 @@ local function entry(_, opt)
     end
   end
 
-  ya.emit("update_files", { op = fs.op("part", { id = id, url = Url(search_cwd), files = files }) })
-  ya.emit("update_files", { op = fs.op("done", { id = id, url = search_cwd, cha = Cha { mode = tonumber("100644", 8) } }) })
+  ya.emit("update_files", {
+    op = fs.op("part", {
+      id = id, url = Url(search_cwd), files = files
+    })
+  })
+  ya.emit("update_files", {
+    op = fs.op("done", {
+      id = id, url = search_cwd, cha = Cha { mode = tonumber("100644", 8) }
+    })
+  })
 end
 
 return { entry = entry }
