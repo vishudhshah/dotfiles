@@ -8,7 +8,7 @@ theme = Material Design Colors
 
 # Options: official, blueprint, chalkboard, microchip, glass,
 # holographic, paper, retro, xray, custom
-macos-icon = holographic
+macos-icon = microchip
 
 cursor-style = block
 cursor-style-blink = false
