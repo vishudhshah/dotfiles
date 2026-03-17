@@ -46,7 +46,7 @@ run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"'
 
 # Preview files with the system Quick Look
 [[mgr.prepend_keymap]]
-on = "<C-Space>"
+on = "<C-p>"
 run = "shell -- qlmanage -p %s"
 
 
