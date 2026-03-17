@@ -23,5 +23,10 @@ use = "yazi-rs/plugins:toggle-pane"
 rev = "1962818"
 hash = "4c0260feb50ea2437380690ffc241da7"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-paste"
+rev = "1962818"
+hash = "3f8d49413bc8691b4c652eb417a20178"
+
 [flavor]
 deps = []
