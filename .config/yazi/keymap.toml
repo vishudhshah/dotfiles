@@ -42,6 +42,7 @@ desc = "Reveal in Finder (drag out)"
 [[mgr.prepend_keymap]]
 on = [ "g", "t" ]
 run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"'
+desc = "cd to Git root"
 
 
 # Preview files with the system Quick Look
