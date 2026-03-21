@@ -9,6 +9,16 @@ map("i", "jk", "<ESC>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
+-- Toggle focus between NvimTree and the file buffer
+map("n", "<C-b>", function()
+  local api = require "nvim-tree.api"
+  if vim.bo.filetype == "NvimTree" then
+    vim.cmd "wincmd p"   -- jump to the previous (file) window
+  else
+    api.tree.focus()     -- open tree if closed, then focus it
+  end
+end, { desc = "Toggle focus: NvimTree ↔ file" })
+
 -- Cheat sheet (F1)
 vim.keymap.set("n", "<F1>", function()
   local term = require("toggleterm.terminal").Terminal:new({
