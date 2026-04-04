@@ -48,7 +48,15 @@ Restart your shell:
 exec zsh
 ```
 
-Then reinstall your tools as needed (Neovim, Ghostty, Yazi, etc.) via Homebrew.
+Then reinstall your tools as needed via Homebrew:
+
+```bash
+brew install neovim ghostty yazi tree-sitter-cli
+```
+
+> `tree-sitter` (the CLI) is required by the Neovim config to compile treesitter parsers.
+
+After installing Neovim, open it and run `:Lazy update` then `:TSUpdate` to install plugins and parsers.
 
 ---
 

@@ -18,14 +18,15 @@ return {
 
   -- Treesitter with extra languages
   {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
-  			"vim", "lua", "vimdoc",
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    config = function()
+      require("nvim-treesitter").install({
+        "vim", "lua", "vimdoc",
         "html", "css",
         "c", "cpp", "python", "javascript", "java", "latex"
-  		},
-  	},
+      })
+    end,
   },
 
   -- Added by VS
@@ -54,7 +55,7 @@ return {
         on_attach = function(bufnr)
           local api = require "nvim-tree.api"
           local function map(desc)
-            return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+            return { desc = "nvim-tree: " .. desc, buf = bufnr, noremap = true, silent = true, nowait = true }
           end
           api.config.mappings.default_on_attach(bufnr)
           -- single left-click: send <LeftMouse> first so cursor moves to the
