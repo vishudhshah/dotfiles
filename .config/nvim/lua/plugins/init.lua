@@ -115,33 +115,6 @@ return {
     },
   },
 
-  -- Neovim command line suggestions
-  {
-    "gelguy/wilder.nvim",
-    event = "CmdlineEnter",
-    config = function()
-      local wilder = require("wilder")
-      wilder.setup({ modes = { ":", "/", "?" } })
-
-      wilder.set_option("renderer", wilder.popupmenu_renderer(
-        wilder.popupmenu_border_theme({
-          border = "rounded",
-          highlights = { border = "Normal" },
-          pumblend = 20,
-          left  = { " ", wilder.popupmenu_devicons() },
-          right = { " ", wilder.popupmenu_scrollbar() },
-        })
-      ))
-
-      wilder.set_option("pipeline", {
-        wilder.branch(
-          wilder.cmdline_pipeline({ fuzzy = 1 }),
-          wilder.search_pipeline()
-        ),
-      })
-    end,
-  },
-
   -- ToggleTerm
   {
     "akinsho/toggleterm.nvim",
@@ -158,6 +131,27 @@ return {
       trailing_stiffness = 0.7,
       matrix_pixel_threshold = 0.5,
       cursor_color = "#37b6ff",
+    },
+  },
+
+  -- Smooth scrolling
+  {
+    "karb94/neoscroll.nvim",
+    event = "WinScrolled",
+    opts = {
+      mappings = {
+        '<C-u>', '<C-d>',
+        '<C-b>', '<C-f>',
+        '<C-y>', '<C-e>',
+        'zt', 'zz', 'zb',
+      },
+      hide_cursor = true,
+      stop_eof = true,
+      respect_scrolloff = false,
+      cursor_scrolls_alone = true,
+      easing = "sine",  -- "linear" | "sine" | "circular" | "quadratic" | "cubic" | "quartic" | "quintic" | "exponential"
+      duration_multiplier = 1.0,  -- 0.8 makes it 20% faster
+      performance_mode = false,
     },
   },
 
