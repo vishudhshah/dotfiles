@@ -188,3 +188,9 @@ function y() {
 gacp() {
   ga . && git commit -m "$*" && gp
 }
+
+# Telegram expenses bot aliases
+alias expenses-restart='launchctl unload ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist && launchctl load ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist'
+alias expenses-start='launchctl load ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist'
+alias expenses-stop='launchctl unload ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist'
+alias expenses-logs='tail -f ~/Library/Logs/expenses-bot.log'
