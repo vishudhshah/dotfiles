@@ -16,12 +16,12 @@ local cal = sbar.add("item", "cal", {
   label = {
     color = colors.white,
     padding_right = 8,
-    width = 49,
+    width = "dynamic",
     align = "right",
     font = { family = settings.font.numbers },
   },
   position = "right",
-  update_freq = 30,
+  update_freq = 1,
   padding_left = 1,
   padding_right = 1,
   background = {
@@ -90,7 +90,7 @@ sbar.add("bracket", { cal.name }, {
 sbar.add("item", { position = "right", width = settings.group_paddings })
 
 local function update()
-  cal:set({ icon = os.date("%a. %d %b."), label = os.date("%H:%M") })
+  cal:set({ icon = os.date("%a %d %b"), label = os.date("%H:%M:%S") })
   cal_popup_date:set({ label = os.date("%A, %B %d %Y") })
   cal_popup_time:set({ label = os.date("%H:%M:%S") })
 end
