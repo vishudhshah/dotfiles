@@ -58,7 +58,6 @@ link "$DOTFILES/.config/ghostty"            "$HOME/.config/ghostty"
 link "$DOTFILES/.config/ghostty-ai-themes"  "$HOME/.config/ghostty-ai-themes"
 link "$DOTFILES/.config/nvim"               "$HOME/.config/nvim"
 link "$DOTFILES/.config/sketchybar"         "$HOME/.config/sketchybar"
-link "$DOTFILES/.config/sketchybar_custom"  "$HOME/.config/sketchybar_custom"
 link "$DOTFILES/.config/yazi"               "$HOME/.config/yazi"
 
 # ── install homebrew if missing ───────────────
