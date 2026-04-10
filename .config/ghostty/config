@@ -45,6 +45,7 @@ confirm-close-surface = false
 macos-titlebar-style = tabs
 quit-after-last-window-closed = true
 window-padding-balance = true
+window-colorspace = display-p3  # srgb looked washed out
 
 
 # ─── Shell integration ───
