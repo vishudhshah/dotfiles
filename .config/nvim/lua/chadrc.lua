@@ -12,6 +12,10 @@ M.base46 = {
 		Comment = { italic = true },
 		["@comment"] = { italic = true },
 	},
+
+  hl_add = {
+    TermNormal = { bg = "#1c2028" },  -- new group, needs hl_add
+  },
 }
 
 -- M.nvdash = { load_on_startup = true }
