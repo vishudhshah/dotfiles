@@ -14,7 +14,7 @@ M.base46 = {
 	},
 
   hl_add = {
-    TermNormal = { bg = "#1c2028" },  -- new group, needs hl_add
+    TermNormal = { bg = "#1c2028", fg = "#ffffff" },  -- new group, needs hl_add
   },
 }
 
