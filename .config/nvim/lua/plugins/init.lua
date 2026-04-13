@@ -37,6 +37,9 @@ return {
     config = function(_, opts)
       -- merge our overrides on top of whatever NvChad passes in
       opts = vim.tbl_deep_extend("force", opts or {}, {
+        filters = {
+          git_ignored = false,
+        },
         view = {
           adaptive_size = true,  -- resize panel to fit the longest visible filename
           signcolumn = "no",     -- remove the left sign column (main source of left padding)
