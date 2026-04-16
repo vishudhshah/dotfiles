@@ -6,8 +6,9 @@ return {
     config = function()
       require("nvim-treesitter").install({
         "vim", "lua", "vimdoc",
-        "html", "css",
-        "c", "cpp", "python", "javascript", "java", "latex"
+        "html", "css", "javascript",
+        "c", "cpp", "python",
+        "java", "latex"
       })
     end,
   },
