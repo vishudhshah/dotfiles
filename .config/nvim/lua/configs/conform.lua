@@ -5,6 +5,8 @@ local options = {
     css        = { "prettier" },
     javascript = { "prettier" },
     typescript = { "prettier" },
+    json       = { "prettier" },
+    jsonc      = { "prettier" },
     python     = { "ruff_format" },
   },
 
