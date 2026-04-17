@@ -128,7 +128,7 @@ alias cat=bat
 alias catp='bat --paging=never'
 alias cheat='~/.config/cheat/cheat.sh'
 alias ff="clear;fastfetch"
-alias x='exit'
+alias q='exit'
 alias cdh="cd ~"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

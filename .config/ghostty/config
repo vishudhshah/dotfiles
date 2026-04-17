@@ -32,11 +32,11 @@ font-thicken = true
 # ─── Window ───
 
 title = Ghostty 👻
-background = #26333a
+background = #1a2434
 # Changing this configuration might require restarting Ghostty completely.
-background-opacity = 0.9
+background-opacity = 0.95
 background-blur = 10
-background-image = /Users/vishudh/Documents/Coding Projects/GitHub/ChromePaper/misc/God of War_20210724153137.png
+background-image = /Users/vishudh/Pictures/Wallpapers/322501.jpg
 background-image-opacity = 0.2
 background-image-fit = cover
 maximize = true

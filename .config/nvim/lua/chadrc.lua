@@ -7,10 +7,20 @@ local M = {}
 
 M.base46 = {
 	theme = "bearded-arc",
+  
+  -- transparent background for all themes everywhere
+  transparency = true,
 
 	hl_override = {
+    -- make comments italic
 		Comment = { italic = true },
 		["@comment"] = { italic = true },
+
+    -- control where background is transparent
+    -- Normal = { bg = "NONE" },
+    -- NormalNC = { bg = "NONE" },
+    -- NormalFloat = { bg = "NONE" },
+    -- EndOfBuffer = { bg = "NONE" },
 	},
 
   hl_add = {
