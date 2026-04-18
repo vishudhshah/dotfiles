@@ -3,7 +3,7 @@
 # Ghostty ships with 250+ built-in themes. A few great dark options:
 # Catppuccin Mocha | Tokyo Night | Rose Pine | Gruvbox Dark | nord
 # Run `ghostty +list-themes` to browse all of them.
-theme = Material Design Colors
+theme = Material Design Colors (custom)
 # uses ansi theme in yazi file previews (using bat), so keep in mind if want to use same in vim
 
 # Options: official, blueprint, chalkboard, microchip, glass,
@@ -12,10 +12,6 @@ macos-icon = microchip
 
 cursor-style = block
 cursor-style-blink = false
-cursor-color = #37b6ff
-# cursor-color = #5bf19e
-# cursor-color = #fed031
-cursor-text = #293339
 mouse-hide-while-typing = true
 
 # ─── Fonts ───
@@ -32,7 +28,6 @@ font-thicken = true
 # ─── Window ───
 
 title = Ghostty 👻
-background = #1a2434
 # Changing this configuration might require restarting Ghostty completely.
 background-opacity = 0.95
 background-blur = 10
