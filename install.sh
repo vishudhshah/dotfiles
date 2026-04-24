@@ -60,6 +60,7 @@ link "$DOTFILES/.config/lazygit"            "$HOME/.config/lazygit"
 link "$DOTFILES/.config/nvim"               "$HOME/.config/nvim"
 link "$DOTFILES/.config/sketchybar"         "$HOME/.config/sketchybar"
 link "$DOTFILES/.config/yazi"               "$HOME/.config/yazi"
+link "$DOTFILES/.gitconfig"                 "$HOME/.gitconfig"
 
 # ── install homebrew if missing ───────────────
 if ! command -v brew &>/dev/null; then
