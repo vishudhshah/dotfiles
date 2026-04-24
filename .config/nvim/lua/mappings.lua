@@ -19,8 +19,13 @@ map("n", "<C-b>", function()
   end
 end, { desc = "Toggle focus: NvimTree ↔ file" })
 
+-- snacks.nvim lazygit keymaps
+map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
+map("n", "<leader>gl", function() Snacks.lazygit.log() end, { desc = "Lazygit log" })
+map("n", "<leader>gf", function() Snacks.lazygit.log_file() end, { desc = "Lazygit file log" })
+
 -- Cheat sheet (F1)
-vim.keymap.set("n", "<F1>", function()
+map("n", "<F1>", function()
   local term = require("toggleterm.terminal").Terminal:new({
     cmd = os.getenv("HOME") .. "/.config/cheat/cheat.sh",
     direction = "float",
