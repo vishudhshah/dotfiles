@@ -41,7 +41,7 @@ return {
           cmd = "git status --short --branch --renames",
           height = 5,
           padding = 1,
-          -- ttl = 5 * 60,  -- cache for 5 minutes
+          ttl = 30,  -- cache time in s
           indent = 3,
         },
         { section = "startup" },
