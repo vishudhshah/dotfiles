@@ -27,15 +27,25 @@ return {
       return " "  -- inside a fold, blank
     end
 
+    -- offset current line number
+    local function lnum_offset()
+      if vim.v.virtnum ~= 0 then return "" end
+      local width = #tostring(vim.fn.line("$")) + 2
+      if vim.v.relnum == 0 then
+        return string.format("%" .. (width - 2) .. "d  ", vim.v.lnum)
+      else
+        return string.format("%" .. width .. "d", vim.v.relnum)
+      end
+    end
+
     require("statuscol").setup({
       -- don't apply custom statuscolumn to these special windows
       ft_ignore = { "NvimTree", "lazy", "mason", "help", "toggleterm", "TelescopePrompt" },
-      relculright = true,
       segments = {
         { text = { fold_indicator }, click = "v:lua.ScFa" },
         { text = { " " } },  -- spacer
         { text = { "%s" }, click = "v:lua.ScSa" },
-        { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+        { text = { lnum_offset, " " }, click = "v:lua.ScLa" },
       },
     })
   end,
