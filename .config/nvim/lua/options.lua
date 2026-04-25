@@ -20,3 +20,19 @@ vim.opt.fillchars = {
   foldsep = " ",
   foldclose = "▶",
 }
+
+-- Default indentation
+vim.opt.tabstop = 2       -- width of a tab character
+vim.opt.shiftwidth = 2    -- indent size for >> and autoindent
+vim.opt.softtabstop = 2   -- spaces inserted when pressing tab
+vim.opt.expandtab = true  -- use spaces instead of tabs
+
+-- Per-filetype overrides
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "python", "java", "c", "cpp", "html", "javascript", "latex", "json" },
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+  end,
+})
