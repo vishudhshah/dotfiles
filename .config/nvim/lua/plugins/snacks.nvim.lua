@@ -38,7 +38,7 @@ return {
           enabled = function()
             return Snacks.git.get_root() ~= nil
           end,
-          cmd = "git status --short --branch --renames",
+          cmd = "git status --short",
           height = 5,
           padding = 1,
           ttl = 30,  -- cache time in s
