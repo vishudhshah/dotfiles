@@ -1,0 +1,3 @@
+- latex
+- rel lines - current line slightly to the left
+- vim in vscode
