@@ -1,24 +1,21 @@
 # dotfiles
 
-Personal configuration files for zsh, Neovim, Ghostty, Yazi, and more.
+Personal configuration files managed as symlinks into this repo.
 
 ## Structure
 
 ```
 ~/dotfiles/
   .zshrc
-  .config/
-    nvim/
-    ghostty/
-    yazi/
-    btop/
+  .gitconfig
+  .config/      # one subdirectory per app
   install.sh
   README.md
 ```
 
-Files live here and are symlinked to where the system expects them. Editing
-the file anywhere (e.g. `~/.zshrc` or `~/dotfiles/.zshrc`) edits the same
-underlying file.
+Files live here and are symlinked to where the system expects them.
+Each app's config lives under `.config/<appname>/`.
+Editing the file anywhere edits the same underlying file.
 
 ---
 
@@ -48,15 +45,13 @@ Restart your shell:
 exec zsh
 ```
 
-Then reinstall your tools as needed via Homebrew:
+Then install your tools via Homebrew as needed.
+Check `install.sh` for the full list of symlinked configs.
 
-```bash
-brew install neovim ghostty yazi tree-sitter-cli
-```
-
+> [!NOTE]
 > `tree-sitter` (the CLI) is required by the Neovim config to compile treesitter parsers.
-
-After installing Neovim, open it and run `:Lazy update` then `:TSUpdate` to install plugins and parsers.
+> 
+> After installing Neovim, open it and run `:Lazy update` then `:TSUpdate` to install plugins and parsers.
 
 ---
 
