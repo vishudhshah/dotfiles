@@ -37,6 +37,7 @@ The script will:
 - Symlink all config files to their expected locations
 - Back up any existing files as `.bak` before overwriting
 - Install Homebrew if not already present
+- Install all packages listed in `Brewfile` via `brew bundle`
 
 ### 3. After the script
 
@@ -45,7 +46,6 @@ Restart your shell:
 exec zsh
 ```
 
-Then install your tools via Homebrew as needed.
 Check `install.sh` for the full list of symlinked configs.
 
 > [!NOTE]

@@ -72,5 +72,14 @@ else
   info "Homebrew already installed"
 fi
 
+# ── install brew packages ─────────────────────
+if command -v brew &>/dev/null; then
+  echo "Installing Homebrew packages..."
+  brew bundle --file="$DOTFILES/Brewfile"
+  info "Packages installed"
+else
+  warn "Homebrew not found, skipping package install"
+fi
+
 echo ""
 info "Done. You may need to restart your shell: exec zsh"
