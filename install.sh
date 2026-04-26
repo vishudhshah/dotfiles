@@ -5,7 +5,7 @@
 # ╚══════════════════════════════════════════╝
 
 DOTFILES="$HOME/dotfiles"
-REPO="git@github.com:yourname/dotfiles.git"  # <-- update this
+REPO="git@github.com:vishudhshah/dotfiles.git"
 
 # ── colors ───────────────────────────────────
 GREEN='\033[0;32m'
