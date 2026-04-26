@@ -59,6 +59,7 @@ link "$DOTFILES/.config/ghostty-ai-themes"  "$HOME/.config/ghostty-ai-themes"
 link "$DOTFILES/.config/lazygit"            "$HOME/.config/lazygit"
 link "$DOTFILES/.config/nvim"               "$HOME/.config/nvim"
 link "$DOTFILES/.config/sketchybar"         "$HOME/.config/sketchybar"
+link "$DOTFILES/.config/spotify-player"     "$HOME/.config/spotify-player"
 link "$DOTFILES/.config/yazi"               "$HOME/.config/yazi"
 link "$DOTFILES/.gitconfig"                 "$HOME/.gitconfig"
 

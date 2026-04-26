@@ -1,2 +1,5 @@
 .DS_Store
 *.log
+
+# spotify-player (has client id)
+app.toml

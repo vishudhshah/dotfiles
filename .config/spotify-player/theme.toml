@@ -1,0 +1,25 @@
+[[themes]]
+name = "Material Design Colors (custom)"
+
+[themes.palette]
+# background = "#1a2434"
+foreground = "#e7ebed"
+black = "#435b67"
+red = "#fc3841"
+green = "#5cf19e"
+yellow = "#fed032"
+blue = "#37b6ff"
+magenta = "#ff57fd"
+cyan = "#59ffd1"
+white = "#ffffff"
+bright_black = "#a1b0b8"
+bright_red = "#fc746d"
+bright_green = "#adf7be"
+bright_yellow = "#fee16c"
+bright_blue = "#70cfff"
+bright_magenta = "#ff90ff"
+bright_cyan = "#9affe6"
+bright_white = "#ffffff"
+
+[themes.component_style]
+# like = { fg = "Red" }

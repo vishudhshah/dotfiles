@@ -1,2 +1,3 @@
+- keep cursor line always centered
 - latex
 - vim in vscode
