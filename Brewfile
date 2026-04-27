@@ -13,17 +13,18 @@ brew "ffmpegthumbnailer"  # video thumbnailer
 brew "fzf"  # fuzzy finder
 brew "ggshield"  # git secrets scanner
 brew "gh"  # GitHub CLI
+brew "matthewod11-stack/tools/ghostty-ai-themes"
 brew "git-delta"  # better git diff
 brew "imagemagick"  # image manipulation
 brew "jq"  # JSON processor
 brew "lazygit"  # git TUI
 brew "neovim"
 brew "node"
+brew "pandoc"  # document converter
 brew "rich-cli"  # used by rich-preview.yazi
 brew "ripgrep"  # better grep
 brew "sevenzip"  # file archiver/compressor
 brew "felixkratz/formulae/sketchybar"
-brew "matthewod11-stack/tools/ghostty-ai-themes"
 brew "spotify_player"  # Spotify CLI player
 brew "tree"  # directory tree visualizer
 brew "tree-sitter-cli"
