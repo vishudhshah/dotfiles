@@ -1,3 +1,4 @@
+- make tabs prettier
 - keep cursor line always centered
 - latex
 - vim in vscode
