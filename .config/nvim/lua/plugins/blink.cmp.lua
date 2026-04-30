@@ -1,8 +1,8 @@
 -- word autocompletion
 return {
-  -- Disable NvChad's built-in autocompletion
+  -- Disable NvChad's built-in autocompletion stack (we use blink.cmp instead)
   { "hrsh7th/nvim-cmp",         enabled = false },
-  { "L3MON4D3/LuaSnip",         enabled = false },
+  { "L3MON4D3/LuaSnip",         enabled = false }, -- re-enabled in luasnip.lua
   { "saadparwaiz1/cmp_luasnip", enabled = false },
   { "hrsh7th/cmp-nvim-lua",     enabled = false },
   { "hrsh7th/cmp-nvim-lsp",     enabled = false },
@@ -11,7 +11,10 @@ return {
 
   {
     'saghen/blink.cmp',
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    dependencies = {
+      -- 'rafamadriz/friendly-snippets',
+      'L3MON4D3/LuaSnip',
+    },
 
     version = '1.*',
 
@@ -27,6 +30,10 @@ return {
       completion = { documentation = { auto_show = true, auto_show_delay_ms = 200 } },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      snippets = {
+        -- Use LuaSnip as the snippet engine
+        preset = 'luasnip',
       },
       fuzzy = { implementation = 'prefer_rust_with_warning' },
     },

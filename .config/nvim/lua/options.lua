@@ -29,7 +29,7 @@ vim.opt.expandtab = true  -- use spaces instead of tabs
 
 -- Per-filetype overrides
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "python", "java", "c", "cpp", "html", "javascript", "latex", "json" },
+  pattern = { "python", "java", "c", "cpp", "html", "javascript", "tex", "json" },
   callback = function()
     vim.opt_local.tabstop = 4
     vim.opt_local.shiftwidth = 4

@@ -49,6 +49,8 @@ return {
     },
     input = { enabled = true },
     lazygit = { enabled = true },
-    notifier = { enabled = true },
+    notifier = {
+      timeout = 5000,  -- default 3000ms
+    },
   },
 }
