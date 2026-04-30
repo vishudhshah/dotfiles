@@ -42,6 +42,7 @@ M.ui = {
   statusline = {
     theme = "default",  -- "default" | "vscode" | "vscode_colored" | "minimal"
     separator_style = "arrow",  -- "default" | "round" | "block" | "arrow"
+    -- enabled = false,  -- if using lualine
   },
 }
 

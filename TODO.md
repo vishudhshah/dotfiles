@@ -1,4 +1,2 @@
 - make tabs prettier
 - keep cursor line always centered
-- vim in vscode
-- lualine.nvim
