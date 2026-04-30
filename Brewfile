@@ -34,7 +34,6 @@ brew "zoxide"  # better cd
 # casks
 cask "boring-notch"  # MacOS notch
 cask "copilot-cli"
-cask "dockdoor"  # MacOS dock, window switcher
 cask "font-monaspice-nerd-font"
 cask "livewallpaper"
 cask "openmtp"  # Android file transfer
