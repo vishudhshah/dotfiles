@@ -28,13 +28,6 @@ M.base46 = {
   },
 }
 
--- M.nvdash = { load_on_startup = true }
--- M.ui = {
---       tabufline = {
---          lazyload = false
---      }
--- }
-
 -- Added by VS
 
 -- Customize statusline
@@ -44,6 +37,7 @@ M.ui = {
     separator_style = "arrow",  -- "default" | "round" | "block" | "arrow"
     -- enabled = false,  -- if using lualine
   },
+  -- tabufline = { enabled = false }, -- if using bufferline
 }
 
 return M

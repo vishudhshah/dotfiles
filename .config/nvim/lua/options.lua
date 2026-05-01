@@ -2,6 +2,7 @@ require "nvchad.options"
 
 -- add yours here!
 
+-- Highlight the current line
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
 
