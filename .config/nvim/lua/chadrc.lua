@@ -33,11 +33,36 @@ M.base46 = {
 -- Customize statusline
 M.ui = {
   statusline = {
-    theme = "default",  -- "default" | "vscode" | "vscode_colored" | "minimal"
-    separator_style = "arrow",  -- "default" | "round" | "block" | "arrow"
+    theme = "default",  -- default | vscode | vscode_colored | minimal
+    separator_style = "arrow",  -- default | round | block | arrow
     -- enabled = false,  -- if using lualine
   },
-  -- tabufline = { enabled = false }, -- if using bufferline
+  tabufline = {
+    -- enabled = false  -- if using bufferline
+    modules = {
+      gitbranch = (function()
+        local cache = ""
+        local function update()
+          local head = io.open(vim.fn.getcwd() .. "/.git/HEAD", "r")
+          if head then
+            local line = head:read("*l")
+            head:close()
+            cache = line and line:match("ref: refs/heads/(.+)") or ""
+          else
+            cache = ""
+          end
+        end
+        update()
+        vim.api.nvim_create_autocmd({ "DirChanged", "BufEnter" }, {
+          callback = update,
+        })
+        return function()
+          return cache ~= "" and ("%#Comment#  " .. cache .. " ") or ""
+        end
+      end)(),
+    },
+    order = { "treeOffset", "buffers", "tabs", "gitbranch", "btns" }
+  },
 }
 
 return M

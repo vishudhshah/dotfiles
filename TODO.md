@@ -1,2 +1,1 @@
-- make tabs prettier
 - keep cursor line always centered
