@@ -121,6 +121,7 @@ fi
 alias clear='clear && printf "\e[3J"'
 alias code="code-insiders"
 alias ls="eza --icons --tree --level=1"
+alias lsa="eza --icons --tree --level=1 --all"
 alias tree="eza --icons --tree"
 alias vim=nvim
 alias vi=nvim
