@@ -1,3 +1,6 @@
+# Use `brew uninstall --zap [--cask] formula/cask`
+# to uninstall formula/cask and all related files
+
 # taps
 tap "felixkratz/formulae"
 tap "matthewod11-stack/tools"
@@ -35,6 +38,7 @@ brew "zoxide"  # better cd
 cask "boring-notch"  # MacOS notch
 cask "copilot-cli"
 cask "font-monaspice-nerd-font"
+cask "iina"  # media player
 cask "livewallpaper"
 cask "openmtp"  # Android file transfer
 cask "thaw"  # menu bar hider
