@@ -196,3 +196,6 @@ alias expenses-restart='launchctl unload ~/Library/LaunchAgents/com.vishudh.expe
 alias expenses-start='launchctl load ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist'
 alias expenses-stop='launchctl unload ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist'
 alias expenses-logs='tail -f ~/Library/Logs/expenses-bot.log'
+
+# 1Password shell completion
+eval "$(op completion zsh)"; compdef _op op
