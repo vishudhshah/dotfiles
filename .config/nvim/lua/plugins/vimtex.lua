@@ -25,5 +25,7 @@ return {
     -- a - accents, b - bold/italic, d - delimiters (eg. \left[),
     -- m - math symbols, g - Greek letters
     vim.g.tex_conceal = "abdmg"
+    -- Suppress warnings window
+    vim.g.vimtex_quickfix_mode = 0
   end
 }
