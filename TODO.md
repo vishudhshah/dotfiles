@@ -1,1 +1,4 @@
 - keep cursor line always centered
+- onedarkpro.nvim
+- molten.nvim (https://www.youtube.com/watch?v=UxHf4g6M5Hg)
+- yazi.nvim
