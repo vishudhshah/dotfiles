@@ -27,8 +27,8 @@ font-thicken = true
 
 # ─── Window ───
 
-title = Ghostty 👻
 # Changing this configuration might require restarting Ghostty completely.
+title = 👻
 background-opacity = 0.95
 background-blur = 10
 background-image = /Users/vishudh/Pictures/Wallpapers/322501.jpg
