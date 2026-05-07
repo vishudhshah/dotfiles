@@ -3,3 +3,6 @@
 
 # spotify-player (has client id)
 app.toml
+
+# whisper models
+*.bin

@@ -197,5 +197,17 @@ alias expenses-start='launchctl load ~/Library/LaunchAgents/com.vishudh.expenses
 alias expenses-stop='launchctl unload ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist'
 alias expenses-logs='tail -f ~/Library/Logs/expenses-bot.log'
 
+# Transcribe video to SRT subtitles using whisper.cpp
+whisper() {
+  ffmpeg -i "$1" -ar 16000 -ac 1 -c:a pcm_s16le "${1%.*}.wav" 2>/dev/null && \
+  whisper-cli \
+    -f "${1%.*}.wav" \
+    -m ~/.config/whisper-models/ggml-large-v3-turbo.bin \
+    -osrt \
+    --no-prints \
+    -of "${1%.*}" 2>/dev/null && \
+  rm "${1%.*}.wav"
+}
+
 # 1Password shell completion
 eval "$(op completion zsh)"; compdef _op op
