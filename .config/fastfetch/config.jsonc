@@ -1,221 +1,170 @@
+// I literally was like most of you guys, a dotfiles scavenger, and got this
+// config from https://github.com/waytoabv/Dotfiles/blob/main/.config/fastfetch/config.jsonc
+// So the credit belongs to "waytoabv"
+//
+// kitten icat ~/github/dotfiles-latest/fastfetch/images/link-green.webp
+
 {
-  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-    "type": "auto",
-    "source": "",
-    "color": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "6": "",
-      "7": "",
-      "8": "",
-      "9": ""
-    },
-    "width": null,
-    "height": null,
-    "padding": {
-      "top": 0,
-      "left": 0,
-      "right": 4
-    },
-    "printRemaining": true,
-    "preserveAspectRatio": false,
-    "recache": false,
+    // If working with tmux, you need to use kitty-icat instead of kitty-direct
+    // https://discord.com/channels/1005603569187160125/1324828708128821271/1327261766014599218
+    "type": "kitty",
+    // "type": "kitty-direct",
+    // "type": "kitty-icat",
+    "source": "~/Pictures/Wallpapers/hand.png",
+    // "height": 15,
+    "width": 40,
     "position": "left",
-    "chafa": {
-      "fgOnly": false,
-      "symbols": "block+border+space-wide-inverted"
+    "padding": {
+      "top": 1,
+      "right": 5
     }
   },
   "display": {
-    "stat": false,
-    "pipe": false,
-    "showErrors": false,
-    "disableLinewrap": true,
-    "hideCursor": false,
-    "separator": ": ",
-    "color": {
-      "keys": "",
-      "title": "",
-      "output": "",
-      "separator": ""
-    },
-    "brightColor": true,
-    "duration": {
-      "abbreviation": false,
-      "spaceBeforeUnit": "default"
-    },
-    "size": {
-      "maxPrefix": "YB",
-      "binaryPrefix": "iec",
-      "ndigits": 2,
-      "spaceBeforeUnit": "default"
-    },
-    "temp": {
-      "unit": "D",
-      "ndigits": 1,
-      "color": {
-        "green": "32",
-        "yellow": "93",
-        "red": "91"
-      },
-      "spaceBeforeUnit": "default"
-    },
-    "percent": {
-      "type": [
-        "num",
-        "num-color"
-      ],
-      "ndigits": 0,
-      "color": {
-        "green": "32",
-        "yellow": "93",
-        "red": "91"
-      },
-      "spaceBeforeUnit": "default",
-      "width": 0
-    },
-    "bar": {
-      "char": {
-        "elapsed": "■",
-        "total": "-"
-      },
-      "border": {
-        "left": "[ ",
-        "right": " ]",
-        "leftElapsed": "",
-        "rightElapsed": ""
-      },
-      "color": {
-        "elapsed": "auto",
-        "total": "97",
-        "border": "97"
-      },
-      "width": 10
-    },
-    "fraction": {
-      "ndigits": 2
-    },
-    "noBuffer": false,
-    "key": {
-      "width": 0,
-      "type": "string",
-      "paddingLeft": 0
-    },
-    "freq": {
-      "ndigits": 2,
-      "spaceBeforeUnit": "default"
-    },
-    "constants": []
-  },
-  "general": {
-    "thread": true,
-    "processingTimeout": 5000,
-    "detectVersion": true
+    "separator": " "
   },
   "modules": [
+    "break",
     {
-      "type": "title",
-      "key": " ",
-      "keyIcon": "",
-      "fqdn": false,
-      "color": {
-        "user": "",
-        "at": "",
-        "host": ""
-      }
-    },
-    {
-      "type": "separator",
-      "string": "-",
-      "outputColor": "",
-      "times": 0
-    },
-    {
-      "type": "os",
-      "keyIcon": ""
+      "type": "custom",
+      "format": "┌───────────────Hardware───────────────┐",
+      "outputColor": "cyan"
     },
     {
       "type": "host",
-      "keyIcon": "󰌢"
-    },
-    {
-      "type": "uptime",
-      "keyIcon": ""
-    },
-    {
-      "type": "shell",
-      "keyIcon": ""
-    },
-    {
-      "type": "terminal",
-      "keyIcon": ""
+      "key": " PC ",
+      "keyColor": "red"
     },
     {
       "type": "cpu",
-      "keyIcon": "",
-      "temp": true,
-      "showPeCoreCount": false
+      "key": "│ ├ ",
+      "keyColor": "red",
+      "temp": true
     },
     {
-      "type": "memory",
-      "keyIcon": "",
-      "percent": {
-        "green": 50,
-        "yellow": 80,
-        "type": 0
-      }
+      "type": "gpu",
+      "key": "│ ├󰒆 ",
+      "keyColor": "red",
+      "format": "{name} ({core-count}) @ {frequency}"
     },
     {
       "type": "disk",
-      "keyIcon": "",
-      "showRegular": true,
-      "showExternal": false,
-      "showHidden": false,
-      "showSubvolumes": false,
-      "showReadOnly": false,
-      "showUnknown": false,
+      "key": "│ ├ ",
       "folders": "/",
-      "useAvailable": false,
-      "percent": {
-        "green": 50,
-        "yellow": 80,
-        "type": 0
-      }
+      "format": "{size-used} / {size-total} ({size-percentage})",
+      "keyColor": "red"
     },
     {
-      "type": "battery",
-      "keyIcon": "",
-      "temp": false,
-      "percent": {
-        "green": 50,
-        "yellow": 20,
-        "type": 0
-      }
+      "type": "swap",
+      "key": "│ ├SW",
+      "keyColor": "red"
+    },
+    {
+      "type": "display",
+      "key": "│ ├ ",
+      "keyColor": "red",
+      "format": "MONITOR ({name})"
+      // "format": "MONITOR ({name}) {width}x{height} @ {refresh-rate} Hz - {physical-width}x{physical-height} mm ({inch} inches, {ppi} ppi)",
+    },
+    {
+      "type": "memory",
+      "key": "└ └󰍛 ",
+      "keyColor": "red"
+    },
+    {
+      "type": "custom",
+      "format": "└──────────────────────────────────────┘",
+      "outputColor": "cyan"
+    },
+    {
+      "type": "custom",
+      "format": "┌───────────────Software───────────────┐",
+      "outputColor": "cyan"
+    },
+    {
+      "type": "os",
+      "key": "􀣺 OS ",
+      "keyColor": "green",
+      "format": "{name} {version} {arch}"
+    },
+    {
+      "type": "kernel",
+      "key": "│ ├ ",
+      "keyColor": "green"
+    },
+    {
+      "type": "packages",
+      "key": "│ ├󰏖 ",
+      "keyColor": "green"
+    },
+    {
+      "type": "localip",
+      "key": "│ ├IP",
+      "keyColor": "green"
+    },
+    {
+      "type": "shell",
+      "key": "└ └ ",
+      "keyColor": "green"
+    },
+    {
+      "type": "de",
+      "key": " DE ",
+      "keyColor": "blue"
+    },
+    {
+      "type": "lm",
+      "key": "│ ├ ",
+      "keyColor": "blue"
+    },
+    {
+      "type": "wm",
+      "key": "│ ├ ",
+      "keyColor": "blue"
+    },
+    // {
+    //   "key": "│ ├ ",
+    //   "keyColor": "blue",
+    //   "type": "command",
+    //   "text": "pgrep yabai &> /dev/null && echo yabai || echo Quartz Compositor"
+    // },
+    {
+      "type": "terminal",
+      "key": "│ ├ ",
+      "keyColor": "blue"
+    },
+    {
+      "type": "terminalfont",
+      "key": "└ └ ",
+      "keyColor": "blue"
+    },
+    {
+      "type": "custom",
+      "format": "└──────────────────────────────────────┘",
+      "outputColor": "cyan"
+    },
+    {
+      "type": "custom",
+      "format": "┌─────────────Uptime / Age─────────────┐",
+      // "format": "┌────────────────Uptime────────────────┐",
+      "outputColor": "cyan"
     },
     {
       "type": "command",
-      "key": "Thermal",
-      "keyColor": "red",
-      "text": "sudo powermetrics --samplers thermal -i1 -n1 2>/dev/null | grep 'Current pressure level' | awk -F': ' '{print $2}'"
+      "key": "  OS Age",
+      "keyColor": "magenta",
+      "text": "birth=1758240000; now=$(date +%s); echo $(( (now - birth) / 86400 )) days"
     },
-    "break",
     {
-      "type": "colors",
-      "key": " ",
-      "keyIcon": "",
-      "symbol": "block",
-      "paddingLeft": 0,
-      "block": {
-        "width": 3,
-        "range": [
-          0,
-          15
-        ]
-      }
+      "type": "uptime",
+      "key": "  Uptime",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "custom",
+      "format": "└──────────────────────────────────────┘",
+      "outputColor": "cyan"
     }
   ]
 }
