@@ -32,7 +32,7 @@ return {
       if vim.v.virtnum ~= 0 then return "" end
       local width = #tostring(vim.fn.line("$")) + 2
       if vim.v.relnum == 0 then
-        return string.format("%" .. (width - 2) .. "d  ", vim.v.lnum)
+        return string.format("%" .. (width - 1) .. "d ", vim.v.lnum)
       else
         return string.format("%" .. width .. "d", vim.v.relnum)
       end
