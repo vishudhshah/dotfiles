@@ -118,20 +118,8 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias clear='clear && printf "\e[3J"'
-alias code="code-insiders"
-alias ls="eza --icons --tree --level=1"
-alias lsa="eza --icons --tree --level=1 --all"
-alias tree="eza --icons --tree"
-alias vim=nvim
-alias vi=nvim
-alias cat=bat
-alias catp='bat --paging=never'
-alias cheat='~/.config/cheat/cheat.sh'
-alias ff="clear;fastfetch"
-alias q='exit'
-alias cdh="cd ~"
-alias spotify=spotify_player  # spotify-player cli
+# aliases → ~/.oh-my-zsh/custom/aliases.zsh
+# functions → ~/.oh-my-zsh/custom/functions.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -155,59 +143,8 @@ eval "$(zoxide init --cmd cd zsh)"
 # Cheat sheet (F1)
 bindkey -s '^[OP' 'cheat\n'
 
-# Add a new cheat sheet entry
-cheat-add() {
-  if [[ $# -ne 4 ]]; then
-    echo "Usage: cheat-add <tool> <category> <keys> <desc>"
-    return 1
-  fi
-  local file="$HOME/.config/cheat/cheat.sh"
-  python3 -c "
-lines = open('$file').readlines()
-entry = '  \"$1|$2|$3|$4\"\n'
-for i, line in enumerate(lines):
-    if line.rstrip() == ')':
-        lines.insert(i, entry)
-        break
-open('$file', 'w').writelines(lines)
-"
-  echo "Added: $1 › $2 › $3 › $4"
-}
-
 # ghostty-ai-themes config
 source "/opt/homebrew/share/ghostty-ai-themes.zsh"
-
-# yazi shell wrapper
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	command yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
-}
-
-# Git add, commit and push in one command
-gacp() {
-  ga . && git commit -m "$*" && gp
-}
-
-# Telegram expenses bot aliases
-alias expenses-restart='launchctl unload ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist && launchctl load ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist'
-alias expenses-start='launchctl load ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist'
-alias expenses-stop='launchctl unload ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist'
-alias expenses-logs='tail -f ~/Library/Logs/expenses-bot.log'
-
-# Transcribe video to SRT subtitles using whisper.cpp
-whisper() {
-  ffmpeg -i "$1" -ar 16000 -ac 1 -c:a pcm_s16le "${1%.*}.wav" 2>/dev/null && \
-  whisper-cli \
-    -f "${1%.*}.wav" \
-    -m ~/.config/whisper-models/ggml-large-v3-turbo.bin \
-    -osrt \
-    --no-prints \
-    -of "${1%.*}" 2>/dev/null && \
-  rm "${1%.*}.wav"
-}
 
 # 1Password shell completion
 eval "$(op completion zsh)"; compdef _op op

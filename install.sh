@@ -62,6 +62,8 @@ link "$DOTFILES/.config/sketchybar"         "$HOME/.config/sketchybar"
 link "$DOTFILES/.config/spotify-player"     "$HOME/.config/spotify-player"
 link "$DOTFILES/.config/yazi"               "$HOME/.config/yazi"
 link "$DOTFILES/.gitconfig"                 "$HOME/.gitconfig"
+link "$DOTFILES/oh-my-zsh/custom/aliases.zsh"   "$HOME/.oh-my-zsh/custom/aliases.zsh"
+link "$DOTFILES/oh-my-zsh/custom/functions.zsh" "$HOME/.oh-my-zsh/custom/functions.zsh"
 
 # ── install homebrew if missing ───────────────
 if ! command -v brew &>/dev/null; then
