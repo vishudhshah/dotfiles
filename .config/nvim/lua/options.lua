@@ -37,3 +37,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.softtabstop = 4
   end,
 })
+
+-- Always keep cursor centered vertically
+vim.opt.scrolloff = 999

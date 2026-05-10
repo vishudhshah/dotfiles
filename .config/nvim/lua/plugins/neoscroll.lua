@@ -1,6 +1,7 @@
--- smooth scrolling
+-- smooth scrolling (replaced by mini.animate)
 return {
   "karb94/neoscroll.nvim",
+  enabled = false,
   event = "WinScrolled",
   opts = {
     mappings = {
