@@ -128,13 +128,6 @@ fi
 # --- P10K End ---
 
 
-# Custom PATH additions
-export PATH="/Applications/Postgres.app/Contents/Versions/18/bin:$PATH"
-export PATH="/Users/vishudh/.antigravity/antigravity/bin:$PATH"  # Added by Antigravity
-# export PATH="$HOME/Library/Python/$(python3 -V | cut -d" " -f2 | cut -d. -f1-2)/bin:$PATH"
-export PATH="$HOME/Library/Python/3.13/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:~/.cargo/bin"
 # Set default theme for bat (syntax highlighting for cat)
 export BAT_THEME="ansi"
 
