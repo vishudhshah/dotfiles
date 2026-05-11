@@ -26,45 +26,6 @@ else
   warn "~/dotfiles already exists, skipping clone"
 fi
 
-# ── helper: create symlink safely ────────────
-link() {
-  local src="$1"   # file in ~/dotfiles
-  local dst="$2"   # where system expects it
-
-  # skip if source doesn't exist in dotfiles
-  if [ ! -e "$src" ]; then
-    warn "Source not found, skipping: $src"
-    return
-  fi
-
-  # backup if real file already exists (not a symlink)
-  if [ -e "$dst" ] && [ ! -L "$dst" ]; then
-    warn "Backing up existing $dst → $dst.bak"
-    mv "$dst" "$dst.bak"
-  fi
-
-  ln -sf "$src" "$dst" && info "Linked $dst" || error "Failed to link $dst"
-}
-
-# ── create symlinks ───────────────────────────
-mkdir -p ~/.config
-
-# add more lines as dotfiles grow
-link "$DOTFILES/.zshrc"                     "$HOME/.zshrc"
-link "$DOTFILES/.config/btop"               "$HOME/.config/btop"
-link "$DOTFILES/.config/cheat"              "$HOME/.config/cheat"
-link "$DOTFILES/.config/fastfetch"          "$HOME/.config/fastfetch"
-link "$DOTFILES/.config/ghostty"            "$HOME/.config/ghostty"
-link "$DOTFILES/.config/ghostty-ai-themes"  "$HOME/.config/ghostty-ai-themes"
-link "$DOTFILES/.config/lazygit"            "$HOME/.config/lazygit"
-link "$DOTFILES/.config/nvim"               "$HOME/.config/nvim"
-link "$DOTFILES/.config/sketchybar"         "$HOME/.config/sketchybar"
-link "$DOTFILES/.config/spotify-player"     "$HOME/.config/spotify-player"
-link "$DOTFILES/.config/yazi"               "$HOME/.config/yazi"
-link "$DOTFILES/.gitconfig"                 "$HOME/.gitconfig"
-link "$DOTFILES/oh-my-zsh/custom/aliases.zsh"   "$HOME/.oh-my-zsh/custom/aliases.zsh"
-link "$DOTFILES/oh-my-zsh/custom/functions.zsh" "$HOME/.oh-my-zsh/custom/functions.zsh"
-
 # ── install homebrew if missing ───────────────
 if ! command -v brew &>/dev/null; then
   echo "Installing Homebrew..."
@@ -74,6 +35,15 @@ else
   info "Homebrew already installed"
 fi
 
+# ── install stow ─────────────────────────────
+if ! command -v stow &>/dev/null; then
+  brew install stow
+  info "stow installed"
+fi
+
+# ── stow dotfiles ────────────────────────────
+stow --dir="$DOTFILES" --target="$HOME" . && info "Dotfiles linked" || error "stow failed"
+
 # ── install brew packages ─────────────────────
 if command -v brew &>/dev/null; then
   echo "Installing Homebrew packages..."
@@ -81,6 +51,13 @@ if command -v brew &>/dev/null; then
   info "Packages installed"
 else
   warn "Homebrew not found, skipping package install"
+fi
+
+# ── update yazi plugins ───────────────────────
+if command -v ya &>/dev/null; then
+  ya pkg upgrade && info "Yazi plugins updated"
+else
+  warn "ya not found, skipping yazi plugin update"
 fi
 
 echo ""

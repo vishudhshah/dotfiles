@@ -29,6 +29,7 @@ brew "ripgrep"  # better grep
 brew "sevenzip"  # file archiver/compressor
 brew "felixkratz/formulae/sketchybar"
 brew "spotify_player"  # Spotify CLI player
+brew "stow"  # dotfiles manager
 brew "tree"  # directory tree visualizer
 brew "tree-sitter-cli"
 brew "yazi"  # terminal file explorer

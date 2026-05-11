@@ -12,6 +12,7 @@ alias ff="clear;fastfetch"
 alias q='exit'
 alias cdh="cd ~"
 alias spotify=spotify_player
+alias cl='clear'
 
 # Telegram expenses bot
 alias expenses-restart='launchctl unload ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist && launchctl load ~/Library/LaunchAgents/com.vishudh.expenses-bot.plist'
