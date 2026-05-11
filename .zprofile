@@ -10,4 +10,3 @@ export PATH="/Users/vishudh/.antigravity/antigravity/bin:$PATH"  # Added by Anti
 # export PATH="$HOME/Library/Python/$(python3 -V | cut -d" " -f2 | cut -d. -f1-2)/bin:$PATH"  # pip --user scripts (dynamic version)
 export PATH="$HOME/Library/Python/3.13/bin:$PATH"  # pip --user scripts
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:~/.cargo/bin"  # Rust/Cargo
