@@ -6,12 +6,15 @@ Personal configuration files managed with [GNU Stow](https://www.gnu.org/softwar
 
 ```
 ~/dotfiles/
-  .zshrc
-  .gitconfig
-  .config/       # one subdirectory per app
-  .oh-my-zsh/    # custom oh-my-zsh files only
-  install.sh
-  Brewfile
+├── .zshrc
+├── .gitconfig
+├── .gitignore
+├── .stow-local-ignore
+├── Brewfile
+├── install.sh
+├── .config/              # one subdirectory per app
+└── .oh-my-zsh/
+    └── custom/           # aliases.zsh, functions.zsh
 ```
 
 Files live here and are symlinked to `$HOME` via `stow`.
