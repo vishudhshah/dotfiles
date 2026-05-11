@@ -35,15 +35,6 @@ else
   info "Homebrew already installed"
 fi
 
-# ── install stow ─────────────────────────────
-if ! command -v stow &>/dev/null; then
-  brew install stow
-  info "stow installed"
-fi
-
-# ── stow dotfiles ────────────────────────────
-stow --dir="$DOTFILES" --target="$HOME" . && info "Dotfiles linked" || error "stow failed"
-
 # ── install brew packages ─────────────────────
 if command -v brew &>/dev/null; then
   echo "Installing Homebrew packages..."
@@ -52,6 +43,9 @@ if command -v brew &>/dev/null; then
 else
   warn "Homebrew not found, skipping package install"
 fi
+
+# ── stow dotfiles ────────────────────────────
+stow --dir="$DOTFILES" --target="$HOME" . && info "Dotfiles linked" || error "stow failed"
 
 # ── update yazi plugins ───────────────────────
 if command -v ya &>/dev/null; then
