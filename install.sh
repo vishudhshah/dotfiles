@@ -45,6 +45,24 @@ else
 fi
 
 # ── stow dotfiles ────────────────────────────
+# Back up any real files/dirs that would conflict with stow-managed symlinks
+BACKUP="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
+conflict_output=$(stow --dir="$DOTFILES" --target="$HOME" -n . 2>&1)
+conflicts=$(echo "$conflict_output" | grep "existing target is neither a link" | sed 's/.*: //')
+
+if [ -n "$conflicts" ]; then
+  mkdir -p "$BACKUP"
+  warn "Conflicting files found — backing up to $BACKUP"
+  while IFS= read -r file; do
+    src="$HOME/$file"
+    dst="$BACKUP/$file"
+    if [ -e "$src" ]; then
+      mkdir -p "$(dirname "$dst")"
+      mv "$src" "$dst" && info "Backed up ~/$file"
+    fi
+  done <<< "$conflicts"
+fi
+
 stow --dir="$DOTFILES" --target="$HOME" . && info "Dotfiles linked" || error "stow failed"
 
 # ── update yazi plugins ───────────────────────

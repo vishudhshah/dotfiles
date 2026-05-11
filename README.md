@@ -38,8 +38,9 @@ cd ~/dotfiles && ./install.sh
 
 The script will:
 - Install Homebrew if not already present
-- Install stow and symlink all configs via `stow .`
 - Install all packages listed in `Brewfile` via `brew bundle`
+- Back up any files that would conflict with stow to `~/.dotfiles-backup-<timestamp>`
+- Symlink all configs via `stow .`
 
 ### 3. After the script
 
@@ -49,7 +50,7 @@ exec zsh
 ```
 
 > [!NOTE]
-> `tree-sitter` (the CLI) is required by the Neovim config to compile treesitter parsers.
+> `tree-sitter-cli` is installed by Homebrew (it's in the Brewfile) and is required by the Neovim config to compile treesitter parsers.
 >
 > After installing Neovim, open it and run `:Lazy update` then `:TSUpdate` to install plugins and parsers.
 
@@ -82,6 +83,23 @@ cd ~/dotfiles && stow .
 # 3. commit
 git add . && git commit -m "add someapp config"
 ```
+
+### Removing an app
+
+```bash
+# 1. unstow everything while the app dir still exists (removes its symlink)
+cd ~/dotfiles && stow -D .
+
+# 2. delete the app's config from dotfiles
+rm -rf ~/dotfiles/.config/someapp
+
+# 3. re-link everything remaining
+stow .
+```
+
+> [!IMPORTANT]
+> Delete from dotfiles **after** running `stow -D .`, not before.
+> If you delete first, the symlink at `~/.config/someapp` becomes broken and stow won't know to clean it up — it only removes symlinks for paths it currently sees in the dotfiles directory.
 
 ### Pulling updates on an existing machine
 
