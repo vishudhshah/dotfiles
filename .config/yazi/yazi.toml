@@ -9,14 +9,14 @@ image_delay = 1
 
 # git plugin
 [[plugin.prepend_fetchers]]
-id  = "git"
-url = "*"
-run = "git"
+group = "git"
+url   = "*"
+run   = "git"
 
 [[plugin.prepend_fetchers]]
-id  = "git"
-url = "*/"
-run = "git"
+group = "git"
+url   = "*/"
+run   = "git"
 
 # rich-preview plugin
 [plugin]
