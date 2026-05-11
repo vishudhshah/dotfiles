@@ -11,7 +11,7 @@ return {
       },
       scroll = {
         enable = true,
-        timing = animate.gen_timing.quadratic({ duration = 100, unit = "total" }),
+        timing = animate.gen_timing.quadratic({ duration = 150, unit = "total" }),
       },
       resize = { enable = false },
       open = { enable = false },
