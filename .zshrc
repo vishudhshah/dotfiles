@@ -141,3 +141,11 @@ source "/opt/homebrew/share/ghostty-ai-themes.zsh"
 
 # 1Password shell completion
 eval "$(op completion zsh)"; compdef _op op
+
+# Auto-update zsh custom plugins weekly
+_plugin_update_stamp="$HOME/.cache/zsh-plugins-updated"
+if [[ ! -f "$_plugin_update_stamp" ]] || [[ $(( $(date +%s) - $(stat -f %m "$_plugin_update_stamp") )) -gt 604800 ]]; then
+  update-zsh-plugins
+  touch "$_plugin_update_stamp"
+fi
+unset _plugin_update_stamp

@@ -42,3 +42,12 @@ whisper() {
     -of "${1%.*}" 2>/dev/null && \
   rm "${1%.*}.wav"
 }
+
+# Update custom zsh plugins
+update-zsh-plugins() {
+  for d in ~/.oh-my-zsh/custom/plugins/*/; do
+    [[ -d "$d/.git" ]] || continue
+    echo "Updating ${d:t}..."
+    git -C "$d" pull
+  done
+}
