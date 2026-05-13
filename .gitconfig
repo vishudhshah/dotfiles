@@ -1,12 +1,22 @@
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
 [user]
-	name = Vishudh Shah
-	email = vishudh@hotmail.com
+  name = Vishudh Shah
+  email = vishudh@hotmail.com
+
 [diff]
-	tool = vimdiff
+  tool = vimdiff
+  colorMoved = default
+
 [core]
-	pager = git-split-diffs --color | less -RFX
+  pager = delta --dark --line-numbers --side-by-side
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
