@@ -35,6 +35,20 @@ M.ui = {
   statusline = {
     theme = "default",  -- default | vscode | vscode_colored | minimal
     separator_style = "arrow",  -- default | round | block | arrow
+    modules = {
+      file = function()
+        local utils = require "nvchad.stl.utils"
+        local config = require("nvconfig").ui.statusline
+        local sep_style = config.separator_style
+        local separators = (type(sep_style) == "table" and sep_style) or utils.separators[sep_style]
+        local sep_r = separators["right"]
+        local x = utils.file()
+        -- local indicator = " ●"
+        local indicator = " *"
+        local modified = vim.bo[utils.stbufnr()].modified and indicator or ""
+        return "%#St_file# " .. x[1] .. " " .. x[2] .. modified .. "%#St_file_sep#" .. sep_r
+      end,
+    },
     -- enabled = false,  -- if using lualine
   },
   tabufline = {
