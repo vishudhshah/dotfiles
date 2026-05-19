@@ -149,3 +149,6 @@ if [[ ! -f "$_plugin_update_stamp" ]] || [[ $(( $(date +%s) - $(stat -f %m "$_pl
   touch "$_plugin_update_stamp"
 fi
 unset _plugin_update_stamp
+
+# Shell was breaking earlier with limit of 256
+ulimit -n 61440
