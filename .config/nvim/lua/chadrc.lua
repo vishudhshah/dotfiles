@@ -43,8 +43,12 @@ M.ui = {
         local separators = (type(sep_style) == "table" and sep_style) or utils.separators[sep_style]
         local sep_r = separators["right"]
         local x = utils.file()
-        -- local indicator = " ●"
-        local indicator = " *"
+        -- fg options: DiagnosticError (red), DiagnosticWarn (yellow),
+        --             DiagnosticInfo (blue), DiagnosticOk (green)
+        local st_file_hl = vim.api.nvim_get_hl(0, { name = "St_file" })
+        local modified_fg = vim.api.nvim_get_hl(0, { name = "DiagnosticError" }).fg
+        vim.api.nvim_set_hl(0, "StModified", { fg = modified_fg, bg = st_file_hl.bg })
+        local indicator = " %#StModified#●%#St_file#"
         local modified = vim.bo[utils.stbufnr()].modified and indicator or ""
         return "%#St_file# " .. x[1] .. " " .. x[2] .. modified .. "%#St_file_sep#" .. sep_r
       end,
