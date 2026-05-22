@@ -34,6 +34,7 @@ brew "tlrc"  # better man pages (rust tldr)
 brew "tree"  # directory tree visualizer
 brew "tree-sitter-cli"
 brew "yazi"  # terminal file explorer
+brew "tmux"
 brew "zoxide"  # better cd
 
 # casks

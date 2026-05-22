@@ -152,3 +152,6 @@ unset _plugin_update_stamp
 
 # Shell was breaking earlier with limit of 256
 ulimit -n 61440
+
+# enable truecolor in Claude Code when inside tmux
+[[ -n "$TMUX" ]] && export CLAUDE_CODE_TMUX_TRUECOLOR=1
