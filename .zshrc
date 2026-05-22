@@ -154,4 +154,6 @@ unset _plugin_update_stamp
 ulimit -n 61440
 
 # enable truecolor in Claude Code when inside tmux
-[[ -n "$TMUX" ]] && export CLAUDE_CODE_TMUX_TRUECOLOR=1
+if [[ -n "$TMUX" ]]; then
+  export CLAUDE_CODE_TMUX_TRUECOLOR=1
+fi
