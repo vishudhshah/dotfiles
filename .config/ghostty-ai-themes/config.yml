@@ -1,3 +1,5 @@
 tools:
   claude:
     theme: "Material Design Colors"
+  copilot:
+    theme: "Material Design Colors"

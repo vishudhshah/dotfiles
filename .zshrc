@@ -137,7 +137,7 @@ eval "$(zoxide init --cmd cd zsh)"
 bindkey -s '^[OP' 'cheat\n'
 
 # ghostty-ai-themes config
-source "/opt/homebrew/share/ghostty-ai-themes.zsh"
+# source "/opt/homebrew/share/ghostty-ai-themes.zsh"
 
 # 1Password shell completion
 eval "$(op completion zsh)"; compdef _op op
