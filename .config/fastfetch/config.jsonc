@@ -135,6 +135,15 @@
       "keyColor": "blue"
     },
     {
+      "type": "media",
+      "key": "│ ├󰻏 ",
+      "keyColor": "blue",
+      "format": "{title} - {artist} - {progress}",
+      "percent": {
+        "type": []
+      }
+    },
+    {
       "type": "terminalfont",
       "key": "└ └ ",
       "keyColor": "blue"
