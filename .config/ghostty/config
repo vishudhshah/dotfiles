@@ -51,6 +51,9 @@ window-colorspace = display-p3
 shell-integration = zsh
 shell-integration-features = no-cursor
 
+# Change default behavior so that option is treated as alt
+macos-option-as-alt = true
+
 
 # ─── Keybindings ───
 

@@ -9,6 +9,7 @@ map("i", "jk", "<ESC>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
+
 -- Toggle focus between NvimTree and the file buffer
 -- map("n", "<C-b>", function()
 --   local api = require "nvim-tree.api"
@@ -19,12 +20,6 @@ map("i", "jk", "<ESC>")
 --   end
 -- end, { desc = "Toggle focus: NvimTree ↔ file" })
 
--- snacks.nvim keymaps
-map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
-map("n", "<leader>gl", function() Snacks.lazygit.log() end, { desc = "Lazygit log" })
-map("n", "<leader>gf", function() Snacks.lazygit.log_file() end, { desc = "Lazygit file log" })
-pcall(vim.keymap.del, "n", "<leader>ds")
-map("n", "<leader>d", function() Snacks.dashboard.open() end, { desc = "Dashboard" })
 
 -- Cheat sheet (F1)
 map("n", "<F1>", function()
@@ -36,3 +31,11 @@ map("n", "<F1>", function()
   })
   term:toggle()
 end, { desc = "Cheat sheet" })
+
+
+-- snacks.nvim keymaps
+map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
+map("n", "<leader>gl", function() Snacks.lazygit.log() end, { desc = "Lazygit log" })
+map("n", "<leader>gf", function() Snacks.lazygit.log_file() end, { desc = "Lazygit file log" })
+pcall(vim.keymap.del, "n", "<leader>ds")
+map("n", "<leader>d", function() Snacks.dashboard.open() end, { desc = "Dashboard" })

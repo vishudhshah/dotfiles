@@ -31,10 +31,11 @@ brew "felixkratz/formulae/sketchybar"
 brew "spotify_player"  # Spotify CLI player
 brew "stow"  # dotfiles manager
 brew "tlrc"  # better man pages (rust tldr)
+brew "tmux"
+brew "tmuxpack/tpack/tpack"  # tmux package manager
 brew "tree"  # directory tree visualizer
 brew "tree-sitter-cli"
 brew "yazi"  # terminal file explorer
-brew "tmux"
 brew "zoxide"  # better cd
 
 # casks
