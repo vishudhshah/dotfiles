@@ -16,3 +16,14 @@ autocmd("FileType", {
     pcall(vim.treesitter.stop)  -- let VimTeX own syntax, not Treesitter
   end,
 })
+
+-- Change underline style to squiggle
+autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.cmd("highlight DiagnosticUnderlineError gui=undercurl")
+    vim.cmd("highlight DiagnosticUnderlineWarn gui=undercurl")
+    vim.cmd("highlight DiagnosticUnderlineInfo gui=undercurl")
+    vim.cmd("highlight DiagnosticUnderlineHint gui=undercurl")
+  end,
+})
