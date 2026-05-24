@@ -1,4 +1,5 @@
 theme = "Material Design Colors (custom)"
+client_id = "YOUR_CLIENT_ID_HERE"
 client_port = 8080
 login_redirect_uri = "http://127.0.0.1:8989/login"
 playback_format = """
@@ -16,7 +17,8 @@ tracks_playback_limit = 50
 app_refresh_duration_in_ms = 32
 playback_refresh_duration_in_ms = 0
 page_size_in_rows = 20
-play_icon = "▶"
+# play_icon = "▶"
+play_icon = "♪"
 pause_icon = "󰏤"
 liked_icon = "󰋑"
 explicit_icon = "(E)"
@@ -54,7 +56,7 @@ album_percent = 40
 [device]
 name = "spotify-player"
 device_type = "speaker"
-volume = 70
+volume = 80
 bitrate = 320
 audio_cache = false
 normalization = false
