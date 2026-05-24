@@ -2,10 +2,14 @@ require "nvchad.autocmds"
 
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Transparent lazygit window in Neovim
 autocmd("TermOpen", {
   callback = function()
-    vim.opt_local.winhighlight = "Normal:TermNormal"
-  end,
+    local bufname = vim.api.nvim_buf_get_name(0)
+    if not bufname:match("lazygit") then
+      vim.opt_local.winhighlight = "Normal:TermNormal"
+    end
+  end
 })
 
 -- Conceal in TeX files

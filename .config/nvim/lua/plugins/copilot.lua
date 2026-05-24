@@ -14,7 +14,7 @@ return {
         accept_line = false,
         next        = "<M-]>",  -- Option+] to cycle next
         prev        = "<M-[>",  -- Option+[ to cycle prev
-        dismiss     = "<C-e>",  -- dismiss
+        dismiss     = "<C-Esc>",  -- dismiss
       },
     },
     panel = { enabled = false },  -- ghost text only, no panel
