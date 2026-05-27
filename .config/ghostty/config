@@ -13,6 +13,8 @@ macos-icon = microchip
 cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
+custom-shader = ~/.config/ghostty/shaders/just-snow.glsl
+custom-shader-animation = always
 
 # ─── Fonts ───
 
