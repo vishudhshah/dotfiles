@@ -27,5 +27,7 @@ return {
     vim.g.tex_conceal = "abdmg"
     -- Suppress warnings window
     vim.g.vimtex_quickfix_mode = 0
+    -- Disable insert-mode mappings (handled by snippets)
+    vim.g.vimtex_imaps_enabled = 0
   end
 }
