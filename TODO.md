@@ -1,9 +1,9 @@
 - md plugin (section view)
-- onedarkpro.nvim
 - molten.nvim (https://www.youtube.com/watch?v=UxHf4g6M5Hg)
 - yazi.nvim
+- onedarkpro.nvim
 
 latex:
-- shortcut to open snippets
-- auto-calculate
-- grammar
+- shortcut to open snippets (maybe not needed?)
+- auto-calculate (see gilles castell sympy/mathematica)
+- grammar (gilles castell)
