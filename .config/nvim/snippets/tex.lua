@@ -144,7 +144,7 @@ local function make_snip(trig, body, auto, cond, opts)
   opts = opts or {}
   local snip_opts = { trig = trig }
   if auto then snip_opts.snippetType = "autosnippet" end
-  if opts.word then snip_opts.wordTrig = true end
+  snip_opts.wordTrig = opts.word == true
   if opts.dscr then snip_opts.dscr = opts.dscr end
   return s(snip_opts, parse_body(body), cond and { condition = cond } or {})
 end
@@ -586,6 +586,7 @@ $0
   autosnip_math("AA",  [[\forall ]]),
   autosnip_math("xx",  [[\times ]]),
   autosnip_math("•",   [[\cdot ]]),
+  autosnip_math("x.",  [[\cdot ]]),
   autosnip_math("+-",  [[\pm ]]),
   autosnip_math("pm",  [[\pm ]]),
   autosnip_math("-+",  [[\mp]]),
