@@ -12,25 +12,6 @@ run  = "plugin vcs-files"
 desc = "Show Git file changes"
 
 
-# Drag IN — copy dropped file into cwd
-[[mgr.prepend_keymap]]
-on   = ["<C-y>"]
-run  = "plugin drag-copy"
-desc = "Drag-in: copy dropped file to cwd"
-
-# Drag IN — move dropped file into cwd
-[[mgr.prepend_keymap]]
-on   = ["<C-x>"]
-run  = "plugin drag-copy -- move"
-desc = "Drag-in: move dropped file to cwd"
-
-# Drag OUT — reveal in Finder so you can drag out
-[[mgr.prepend_keymap]]
-on   = ["<C-f>"]
-run  = "shell -- open -R %s"
-desc = "Reveal in Finder (drag out)"
-
-
 # Close input by one Esc press
 # [[input.prepend_keymap]]
 # on   = "<Esc>"
