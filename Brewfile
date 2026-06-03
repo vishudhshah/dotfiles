@@ -42,6 +42,7 @@ brew "zoxide"  # better cd
 cask "boring-notch"  # MacOS notch
 cask "copilot-cli"
 cask "font-monaspice-nerd-font"
+cask "grandperspective"  # disk usage visualizer
 cask "iina"  # media player
 cask "livewallpaper"
 cask "openmtp"  # Android file transfer

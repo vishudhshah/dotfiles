@@ -2,9 +2,9 @@
 - jujutsu vcs (https://pluie.me/blog/why-jujutsu)
 
 latex:
-- shortcut to open snippets (maybe not needed?)
 - auto-calculate (see gilles castell sympy/mathematica)
 - grammar (gilles castell)
+- shortcut to open snippets (not needed now with tmux?)
 
 neovim:
 - md plugin (section view)
