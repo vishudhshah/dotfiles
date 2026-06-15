@@ -509,17 +509,19 @@ $0
   -- ── Fractions ────────────────────────────────────────────────────────────
   autosnip_math("//", [[\frac{$1}{$2}$0]]),
 
-  s({
-    trig = "((%d+)|(%d*)(\\?[A-Za-z]+)((\\^|_)(\\{%d+\\}|%d))*)/",
-    regTrig = true, wordTrig = true, snippetType = "autosnippet",
-  }, {
+  s({ trig = "(%d+)/", regTrig = true, wordTrig = true, snippetType = "autosnippet" }, {
+    f(function(_, snip) return "\\frac{" .. snip.captures[1] .. "}" end),
+    t("{"), i(1), t("}"), i(0),
+  }, { condition = in_math }),
+
+  s({ trig = "(%d*\\?[%a][%w%^%_%{%}\\]*)/" , regTrig = true, wordTrig = true, snippetType = "autosnippet" }, {
     f(function(_, snip) return "\\frac{" .. snip.captures[1] .. "}" end),
     t("{"), i(1), t("}"), i(0),
   }, { condition = in_math }),
 
   s({ trig = "(.-)%)/", regTrig = true, snippetType = "autosnippet" }, {
     f(function(_, snip)
-      local str = snip.captures[1]
+      local str = snip.captures[1] .. ")"  -- re-attach ) consumed by trigger
       local depth = 0
       local start_idx = #str
       for idx = #str, 1, -1 do
@@ -530,7 +532,7 @@ $0
           if depth == 0 then start_idx = idx; break end
         end
       end
-      return str:sub(1, start_idx - 1) .. "\\frac{" .. str:sub(start_idx + 1) .. "}"
+      return str:sub(1, start_idx - 1) .. "\\frac{" .. str:sub(start_idx + 1, -2) .. "}"
     end),
     t("{"), i(1), t("}"), i(0),
   }, { condition = in_math }),
@@ -638,11 +640,11 @@ $0
   autosnip_math("nr",     [[\sqrt[$1]{$2}]]),
 
   -- ── Trig / operators (wA, math, regex) ───────────────────────────────────
-  s({ trig = "a(rc)?(sin|cos|tan|csc|sec|cot)", regTrig = true, wordTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = "a(rc)?(sin|cos|tan|csc|sec|cot)", regTrig = true, trigEngine = "ecma", wordTrig = true, snippetType = "autosnippet" }, {
     f(function(_, snip) return "\\arc" .. snip.captures[2] end),
   }, { condition = in_math }),
 
-  s({ trig = "(sin|cos|tan|csc|sec|cot|min|max|inf|sup|log|ln|exp)", regTrig = true, wordTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = "(sin|cos|tan|csc|sec|cot|min|max|inf|sup|log|ln|exp)", regTrig = true, trigEngine = "ecma", wordTrig = true, snippetType = "autosnippet" }, {
     f(function(_, snip) return "\\" .. snip.captures[1] end),
   }, { condition = in_math }),
 
