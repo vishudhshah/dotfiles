@@ -73,7 +73,7 @@ else:
   end
 end
 
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   pattern = { "tex", "markdown" },
   callback = function()
     local esc = vim.api.nvim_replace_termcodes('<Esc>', true, false, true)
@@ -85,5 +85,19 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("x", "<leader>se", function() eval("equal")           end, { desc = "SymPy equal",           buffer = true })
     vim.keymap.set("x", "<leader>sn", function() eval("numerical")       end, { desc = "SymPy numerical",       buffer = true })
     vim.keymap.set("x", "<leader>sm", function() eval("numerical_equal") end, { desc = "SymPy numerical equal", buffer = true })
+  end,
+})
+
+-- Continue \item on <CR> within latex lists
+autocmd("FileType", {
+  pattern = "tex",
+  callback = function()
+    vim.keymap.set("i", "<CR>", function()
+      local indent = vim.api.nvim_get_current_line():match("^(%s*)\\item")
+      if indent then
+        return "\r\\item "
+      end
+      return "\r"
+    end, { buffer = true, expr = true, desc = "Continue \\item on <CR>" })
   end,
 })
