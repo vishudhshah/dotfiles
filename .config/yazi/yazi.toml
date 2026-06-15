@@ -1,6 +1,7 @@
 # show hidden files by default
 [mgr]
 show_hidden = true
+linemode = "size"
 
 [preview]
 max_width  = 2000
