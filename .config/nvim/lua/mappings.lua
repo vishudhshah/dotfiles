@@ -42,3 +42,9 @@ map("n", "<leader>d", function() Snacks.dashboard.open() end, { desc = "Dashboar
 
 -- Suppress default space key behavior in normal and visual modes
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+
+-- Shortcut to open snippets for current fileltype
+map("n", "<leader>fs", function()
+  local ft = vim.bo.filetype
+  vim.cmd("edit " .. vim.fn.stdpath("config") .. "/snippets/" .. ft .. ".lua")
+end, { desc = "Edit snippets for current filetype" })
