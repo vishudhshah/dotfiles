@@ -101,3 +101,17 @@ autocmd("FileType", {
     end, { buffer = true, expr = true, desc = "Continue \\item on <CR>" })
   end,
 })
+
+-- Spell checking for TeX and Markdown files
+autocmd("FileType", {
+  pattern = { "tex", "markdown" },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = { "en_gb" }
+
+    vim.keymap.set("i", "<C-g>", "<c-g>u<Esc>[s1z=`]a<c-g>u", {
+      buffer = true,
+      desc = "Fix previous spelling mistake",
+    })
+  end,
+})
