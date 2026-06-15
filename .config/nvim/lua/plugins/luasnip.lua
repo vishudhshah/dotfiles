@@ -18,9 +18,9 @@ return {
     -- Load snippets from ~/.config/nvim/snippets/
     require("luasnip.loaders.from_lua").load({ paths = vim.fn.stdpath("config") .. "/snippets" })
 
-    -- Jump forward through tab stops
+    -- Jump forward / expand snippet
     vim.keymap.set({ "i", "s" }, "<Tab>", function()
-      if ls.jumpable(1) then ls.jump(1) end
+      if ls.expand_or_jumpable() then ls.expand_or_jump() end
     end, { silent = true })
 
     -- Jump backward through tab stops

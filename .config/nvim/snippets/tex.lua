@@ -318,6 +318,33 @@ $0]]),
   autosnip_math("jj", [[_j]]),
   autosnip_math("kk", [[_k]]),
 
+  -- ── SymPy evaluation ─────────────────────────────────────────────────────
+  autosnip_math("sympy", [[sympy $1 sympy]]),
+  s(
+    { trig = "sympy(.+)sympy", regTrig = true },
+    {
+      f(function(_, snip)
+        local expr = snip.captures[1]
+        local script = "/tmp/sympy_eval.py"
+        local fh = io.open(script, "w")
+        fh:write(string.format([[
+from sympy.parsing.latex import parse_latex
+from sympy import simplify, latex
+expr = r'%s'
+# normalize differential: \,\mathrm{d}x -> dx, \, dx -> dx
+import re
+expr = re.sub(r'\\,\s*\\mathrm\{d\}', 'd', expr)
+expr = re.sub(r'\\,\s*d', 'd', expr)
+print(latex(parse_latex(expr).doit()), end='')
+]], expr))
+        fh:close()
+        local result = vim.fn.system("python3 " .. script)
+        return result:gsub("%s+$", "")
+      end, {}),
+    },
+    { condition = in_math }
+  ),
+
   -- ── Math mode ────────────────────────────────────────────────────────────
   autosnip("mk", [[\($1\)$0]], { word = true }),
   autosnip("dm", "\\[ $0 \\]", { word = true }),
