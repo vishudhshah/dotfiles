@@ -192,10 +192,32 @@ return {
 
   -- ── Document templates (bA) ──────────────────────────────────────────────
   autosnip_line("template", [[
-\documentclass{scrartcl}
+\documentclass[12pt]{scrartcl}
+
+
+\usepackage[margin=1in, head=24pt]{geometry}
+\usepackage{setspace}
+\singlespacing  % \onehalfspacing, \doublespacing, \setstretch{1.25}
+
+\usepackage[singlespacing=true]{scrlayer-scrpage}
+\clearpairofpagestyles
+\pagestyle{scrheadings}
+\ihead{Vishudh Shah}
+\chead{$1}
+\ohead{${2:\today}}
+\cfoot{\pagemark}
+\KOMAoptions{headsepline=true}
+\setkomafont{pageheadfoot}{\normalfont}
+
+\usepackage{parskip}
+
+\usepackage{microtype}
+
 
 \begin{document}
+
 ${0:Content goes here.}
+
 \end{document}]]),
 
   autosnip_line("sbf", [[
