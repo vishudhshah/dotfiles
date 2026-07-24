@@ -14,6 +14,7 @@ cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
 custom-shader = ~/.config/ghostty/shaders/just-stars.glsl
+custom-shader = ~/.config/ghostty/shaders/cursor_warp.glsl
 custom-shader-animation = always
 
 # ─── Fonts ───
