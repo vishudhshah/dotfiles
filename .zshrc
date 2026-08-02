@@ -81,9 +81,10 @@ ENABLE_CORRECTION="true"
 plugins=(
   git
   you-should-use
-  zsh-autosuggestions
+  # zsh-autosuggestions
   fast-syntax-highlighting
   zsh-autocomplete
+  zsh-sage  # keep after zsh-autocomplete
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -157,3 +158,6 @@ ulimit -n 61440
 if [[ -n "$TMUX" ]]; then
   export CLAUDE_CODE_TMUX_TRUECOLOR=1
 fi
+
+# Hermes Agent — ensure ~/.local/bin is on PATH
+export PATH="$HOME/.local/bin:$PATH"
