@@ -161,3 +161,10 @@ fi
 
 # Hermes Agent — ensure ~/.local/bin is on PATH
 export PATH="$HOME/.local/bin:$PATH"
+
+# Composio CLI
+export COMPOSIO_INSTALL_DIR="/Users/vishudh/.composio"
+export PATH="$COMPOSIO_INSTALL_DIR:$PATH"
+
+# source secrets / env vars
+[ -f "$HOME/.env" ] && source "$HOME/.env"

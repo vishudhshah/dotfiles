@@ -6,3 +6,6 @@ app.toml
 
 # whisper models
 *.bin
+
+# secrets / env vars
+.env

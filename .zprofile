@@ -12,3 +12,4 @@ export PATH="/Users/vishudh/.antigravity-ide/antigravity-ide/bin:$PATH"  # Added
 export PATH="$HOME/Library/Python/3.13/bin:$PATH"  # pip --user scripts
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+export PATH="$HOME/.hermes/bin:$PATH"
