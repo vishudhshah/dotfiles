@@ -11,13 +11,41 @@ than macOS's MediaRemote info, which spotify_player -- having no .app bundle
 -- can't fully populate) so the notification can show real album art.
 
 Invoked by spotify_player as: notify.py <Changed|Playing|Paused|EndOfTrack> <track_id> [position_ms]
+
+On auto-advance (a track ending naturally, as opposed to a manual skip/back),
+this hook fires before spotify_player's own playback-state cache has caught
+up to the new track_id, so an immediate `get key playback` still returns the
+previous track. `get key playback` is polled until its item.id matches the
+track_id the hook was invoked with (falling back to whatever it last saw if
+that never happens) instead of trusting the first read.
 """
 import json
 import subprocess
 import sys
+import time
 import urllib.request
 
 ARTWORK_PATH = "/tmp/spotify_player_artwork.jpg"
+POLL_ATTEMPTS = 6
+POLL_INTERVAL_SECS = 0.25
+
+
+def fetch_playback_item(expected_track_id: str) -> dict:
+    item = {}
+    for _ in range(POLL_ATTEMPTS):
+        try:
+            raw = subprocess.run(
+                ["spotify_player", "get", "key", "playback"],
+                capture_output=True, text=True, timeout=3, check=True,
+            ).stdout
+            item = json.loads(raw).get("item") or {}
+        except Exception:
+            item = {}
+
+        if not expected_track_id or item.get("id") == expected_track_id:
+            break
+        time.sleep(POLL_INTERVAL_SECS)
+    return item
 
 
 def main() -> None:
@@ -25,21 +53,14 @@ def main() -> None:
     if event != "Changed":
         return
 
-    try:
-        raw = subprocess.run(
-            ["spotify_player", "get", "key", "playback"],
-            capture_output=True, text=True, timeout=3, check=True,
-        ).stdout
-        data = json.loads(raw)
-        item = data.get("item") or {}
-        title = item.get("name") or ""
-        artists = ", ".join(a["name"] for a in item.get("artists", []))
-        images = sorted(
-            item.get("album", {}).get("images", []),
-            key=lambda i: i.get("width", 0),
-        )
-    except Exception:
-        return
+    track_id = sys.argv[2] if len(sys.argv) > 2 else ""
+    item = fetch_playback_item(track_id)
+    title = item.get("name") or ""
+    artists = ", ".join(a["name"] for a in item.get("artists", []))
+    images = sorted(
+        item.get("album", {}).get("images", []),
+        key=lambda i: i.get("width", 0),
+    )
 
     if not title:
         return
@@ -57,7 +78,7 @@ def main() -> None:
     if art_url:
         try:
             urllib.request.urlretrieve(art_url, ARTWORK_PATH)
-            args += ["-contentImage", ARTWORK_PATH, "-appIcon", ARTWORK_PATH]
+            args += ["-contentImage", ARTWORK_PATH]
         except Exception:
             pass
 
