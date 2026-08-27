@@ -49,7 +49,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -168,3 +168,6 @@ export PATH="$COMPOSIO_INSTALL_DIR:$PATH"
 
 # source secrets / env vars
 [ -f "$HOME/.env" ] && source "$HOME/.env"
+
+# othello
+export OTHELLO_GRAPH=1
