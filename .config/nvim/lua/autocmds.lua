@@ -109,9 +109,26 @@ autocmd("FileType", {
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en_gb" }
 
-    vim.keymap.set("i", "<C-g>", "<c-g>u<Esc>[s1z=`]a<c-g>u", {
+    vim.keymap.set("i", "<C-g>", "<c-g>u<Esc>mq[s1z=`qa<c-g>u", {
       buffer = true,
       desc = "Fix previous spelling mistake",
     })
+  end,
+})
+
+-- Autosave all files except .tex
+local autosave_group = vim.api.nvim_create_augroup("AutoSave", { clear = true })
+
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+  group = autosave_group,
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype ~= "tex"
+      and vim.bo.modifiable
+      and vim.bo.buftype == ""
+      and vim.fn.expand("%") ~= ""  -- don't try to save unnamed buffers
+    then
+      vim.cmd("silent! write")
+    end
   end,
 })

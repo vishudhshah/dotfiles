@@ -363,7 +363,7 @@ print(latex(parse_latex(expr).doit()), end='')
   autosnip_line("pf",    [[\begin{proof}
     $0
 \end{proof}]]),
-  autosnip_line("defn",  [[\begin{definition}
+  autosnip_line("defn",  [[\begin{definition}[$1]
     $0
 \end{definition}]]),
   autosnip_line("thm",   [[\begin{theorem}
