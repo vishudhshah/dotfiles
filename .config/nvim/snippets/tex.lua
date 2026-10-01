@@ -347,7 +347,7 @@ print(latex(parse_latex(expr).doit()), end='')
 
   -- ── Math mode ────────────────────────────────────────────────────────────
   autosnip("mk", [[\($1\)$0]], { word = true }),
-  autosnip("dm", "\\[ $0 \\]", { word = true }),
+  autosnip("dm", "\\[ $0 .\\]", { word = true }),
 
   -- ── Environments (bA) ────────────────────────────────────────────────────
   -- beg: second $1 auto-mirrors via rep(1)
@@ -591,10 +591,10 @@ $0
   autosnip_math("line", [[\overline{$1}$0]]),
 
   -- ── Dots ─────────────────────────────────────────────────────────────────
-  autosnip(      "c%.",     [[\cdots]]),
-  autosnip(      "d%.",     [[\ddots]]),
-  autosnip(      "l%.",     [[\ldots]]),
-  autosnip_math( "%.%.%.",  [[\dots]]),
+  autosnip(      "c...", [[\cdots]]),
+  autosnip(      "d...", [[\ddots]]),
+  autosnip(      "l...", [[\ldots]]),
+  autosnip_math( "...",  [[\dots]]),
 
   -- ── Logic / relations (iA, math) ─────────────────────────────────────────
   autosnip_math("=>",  [[\implies ]]),
@@ -688,18 +688,20 @@ $0
   autosnip_math("dag",    [[\dag]]),
   autosnip_math("ubrace", [[\underbrace{$1}_{${2:label}}$0]]),
   autosnip_math("fn",     [[$1 \colon $2 \to $0]]),
+  autosnip_math("tag",  [[\tag{$1}$0]]),
+  autosnip_math("tag*", [[\tag*{$1}$0]]),
 
   autosnip_math("case", [[\begin{cases}
     $0
 \end{cases}]], { word = true }),
 
   -- ── Left/right delimiters (iA, math) ─────────────────────────────────────
-  autosnip_math("lr%(",  [[\left( $1 \right)$0]]),
+  autosnip_math("lr(",  [[\left( $1 \right)$0]]),
   autosnip_math("lr|",   [[\left| $1 \right|$0]]),
   autosnip_math("lr\\|", [[\left\| $1 \right\|$0]]),
   autosnip_math("lr{",   [[\left\{ $1 \right\}$0]]),
-  autosnip_math("lr%[",  [[\left[ $1 \right]$0]]),
-  autosnip_math("lr%.",  [[\left. $1 \right|$0]]),
+  autosnip_math("lr[",  [[\left[ $1 \right]$0]]),
+  autosnip_math("lr.",  [[\left. $1 \right|$0]]),
   autosnip_math("lr<",   [[\innerprod{$1}{$2}$0]]),
   autosnip_math("<>",    [[\innerprod{$1}{$2}$0]]),
 
