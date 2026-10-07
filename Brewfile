@@ -48,6 +48,7 @@ cask "font-monaspice-nerd-font"
 cask "grandperspective"  # disk usage visualizer
 cask "iina"  # media player
 cask "livewallpaper"
+cask "middleclick"  # mouse middle click for trackpad
 cask "openmtp"  # Android file transfer
 cask "skim"  # VimTeX PDF viewer
 cask "thaw"  # menu bar hider
