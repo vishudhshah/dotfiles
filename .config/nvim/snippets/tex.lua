@@ -347,7 +347,7 @@ print(latex(parse_latex(expr).doit()), end='')
 
   -- ── Math mode ────────────────────────────────────────────────────────────
   autosnip("mk", [[\($1\)$0]], { word = true }),
-  autosnip("dm", "\\[ $0 .\\]", { word = true }),
+  autosnip("dm", "\\[ $1 ${2:.}\\]$0", { word = true }),
 
   -- ── Environments (bA) ────────────────────────────────────────────────────
   -- beg: second $1 auto-mirrors via rep(1)
@@ -637,9 +637,9 @@ $0
   autosnip_math("AA",  [[\forall ]]),
   autosnip_math("xx",  [[\times ]]),
   autosnip_math("•",   [[\cdot ]]),
-  autosnip_math("x.",  [[\cdot ]]),
   autosnip_math("+-",  [[\pm ]]),
   autosnip_math("pm",  [[\pm ]]),
+  autosnip_math("±",  [[\pm ]]),
   autosnip_math("-+",  [[\mp]]),
   autosnip_math("oo",  [[\infty]]),
   autosnip_math("PP",  [[\prob]]),
@@ -696,11 +696,11 @@ $0
 \end{cases}]], { word = true }),
 
   -- ── Left/right delimiters (iA, math) ─────────────────────────────────────
-  autosnip_math("lr(",  [[\left( $1 \right)$0]]),
+  autosnip_math("lr()",  [[\left(  $1\right)$0]]),
   autosnip_math("lr|",   [[\left| $1 \right|$0]]),
   autosnip_math("lr\\|", [[\left\| $1 \right\|$0]]),
-  autosnip_math("lr{",   [[\left\{ $1 \right\}$0]]),
-  autosnip_math("lr[",  [[\left[ $1 \right]$0]]),
+  autosnip_math("lr{}",   [[\left\{  $1\right\}$0]]),
+  autosnip_math("lr[]",  [[\left[  $1\right]$0]]),
   autosnip_math("lr.",  [[\left. $1 \right|$0]]),
   autosnip_math("lr<",   [[\innerprod{$1}{$2}$0]]),
   autosnip_math("<>",    [[\innerprod{$1}{$2}$0]]),
