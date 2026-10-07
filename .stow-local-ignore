@@ -30,4 +30,5 @@ Brewfile
 install\.sh
 CLAUDE\.md
 TODO\.md
+^/\.env\.example$
 \.DS_Store
