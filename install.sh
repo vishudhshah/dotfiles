@@ -63,6 +63,45 @@ else
   die "Homebrew not found on PATH; cannot install packages"
 fi
 
+# ── install shell dependencies ────────────────
+# Install before Stow so ~/.oh-my-zsh remains a real directory containing
+# the framework, while Stow links only our custom aliases and functions.
+omz_dir="$HOME/.oh-my-zsh"
+omz_custom="${ZSH_CUSTOM:-$omz_dir/custom}"
+if [ -f "$omz_dir/oh-my-zsh.sh" ]; then
+  info "Oh My Zsh already installed"
+elif [ -e "$omz_dir" ] || [ -L "$omz_dir" ]; then
+  die "Incomplete Oh My Zsh installation at $omz_dir; preserve its contents and repair it before rerunning"
+else
+  echo "Installing Oh My Zsh..."
+  omz_installer=$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) || die "Oh My Zsh installer download failed"
+  ZSH="$omz_dir" REPO=ohmyzsh/ohmyzsh REMOTE=https://github.com/ohmyzsh/ohmyzsh.git BRANCH=master \
+    /bin/sh -c "$omz_installer" -- --unattended --keep-zshrc || die "Oh My Zsh installation failed"
+  [ -f "$omz_dir/oh-my-zsh.sh" ] || die "Oh My Zsh installation is missing oh-my-zsh.sh"
+  info "Oh My Zsh installed"
+fi
+
+install_zsh_dependency() {
+  local name="$1" url="$2" destination="$3" entry="$4"
+  if [ -f "$destination/$entry" ]; then
+    info "$name already installed"
+    return 0
+  fi
+  if [ -e "$destination" ] || [ -L "$destination" ]; then
+    die "Incomplete $name installation at $destination; repair it before rerunning"
+  fi
+  mkdir -p "$(dirname "$destination")" || die "Could not create directory for $name"
+  git clone --depth=1 "$url" "$destination" || die "$name installation failed"
+  [ -f "$destination/$entry" ] || die "$name installation is missing $entry"
+  info "$name installed"
+}
+
+install_zsh_dependency "Powerlevel10k" "https://github.com/romkatv/powerlevel10k.git" "$omz_custom/themes/powerlevel10k" "powerlevel10k.zsh-theme"
+install_zsh_dependency "you-should-use" "https://github.com/MichaelAquilina/zsh-you-should-use.git" "$omz_custom/plugins/you-should-use" "you-should-use.plugin.zsh"
+install_zsh_dependency "fzf-tab" "https://github.com/Aloxaf/fzf-tab.git" "$omz_custom/plugins/fzf-tab" "fzf-tab.plugin.zsh"
+install_zsh_dependency "fast-syntax-highlighting" "https://github.com/zdharma-continuum/fast-syntax-highlighting.git" "$omz_custom/plugins/fast-syntax-highlighting" "fast-syntax-highlighting.plugin.zsh"
+install_zsh_dependency "zsh-sage" "https://github.com/UtsavMandal2022/zsh-sage.git" "$omz_custom/plugins/zsh-sage" "zsh-sage.plugin.zsh"
+
 # ── stow dotfiles ────────────────────────────
 # Back up any real files/dirs that would conflict with stow-managed symlinks
 BACKUP="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
