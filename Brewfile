@@ -32,6 +32,7 @@ brew "ripgrep"  # better grep
 brew "sevenzip"  # file archiver/compressor
 brew "spotify_player"  # Spotify CLI player
 brew "stow"  # dotfiles manager
+brew "terminal-notifier"  # Spotify track-change notifications
 brew "tlrc"  # better man pages (rust tldr)
 brew "tmux"
 brew "tree"  # directory tree visualizer
@@ -40,6 +41,7 @@ brew "yazi"  # terminal file explorer
 brew "zoxide"  # better cd
 
 # casks
+cask "1password-cli"  # op shell completion
 cask "boring-notch"  # MacOS notch
 cask "copilot-cli"
 cask "font-monaspice-nerd-font"
@@ -47,5 +49,6 @@ cask "grandperspective"  # disk usage visualizer
 cask "iina"  # media player
 cask "livewallpaper"
 cask "openmtp"  # Android file transfer
+cask "skim"  # VimTeX PDF viewer
 cask "thaw"  # menu bar hider
 cask "tpack"  # tmux plugin manager
