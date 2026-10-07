@@ -5,16 +5,39 @@ cheat-add() {
     return 1
   fi
   local file="$HOME/.config/cheat/cheat.sh"
-  python3 -c "
-lines = open('$file').readlines()
-entry = '  \"$1|$2|$3|$4\"\n'
-for i, line in enumerate(lines):
-    if line.rstrip() == ')':
-        lines.insert(i, entry)
-        break
-open('$file', 'w').writelines(lines)
-"
-  echo "Added: $1 › $2 › $3 › $4"
+  python3 - "$file" "$@" <<'PY'
+import sys
+
+filename, *fields = sys.argv[1:]
+if any(any(char in field for char in "|\r\n") for field in fields):
+    sys.exit("cheat-add: fields cannot contain pipes or newlines")
+
+# Double-quoted Zsh strings must keep substitutions and quotes literal.
+value = "|".join(fields)
+for char in ('\\', '"', '$', '`'):
+    value = value.replace(char, '\\' + char)
+entry = '  "' + value + '"\n'
+
+try:
+    with open(filename, "r+", encoding="utf-8", newline="") as sheet:
+        lines = sheet.readlines()
+        starts = [i for i, line in enumerate(lines) if line.strip() == "COMMANDS=("]
+        if len(starts) != 1:
+            sys.exit("cheat-add: expected one COMMANDS array")
+        end = next((i for i in range(starts[0] + 1, len(lines))
+                    if lines[i].strip() == ")"), None)
+        if end is None:
+            sys.exit("cheat-add: COMMANDS array has no closing parenthesis")
+        lines.insert(end, entry)
+        sheet.seek(0)
+        sheet.writelines(lines)
+        sheet.truncate()
+except OSError as exc:
+    sys.exit(f"cheat-add: {exc}")
+PY
+  local result=$?
+  (( result == 0 )) || return "$result"
+  printf 'Added: %s › %s › %s › %s\n' "$@"
 }
 
 # yazi shell wrapper
