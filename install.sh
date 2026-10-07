@@ -16,6 +16,7 @@ NC='\033[0m'
 info()    { echo -e "${GREEN}[✓]${NC} $1"; }
 warn()    { echo -e "${YELLOW}[!]${NC} $1"; }
 error()   { echo -e "${RED}[✗]${NC} $1"; }
+die()     { error "$1"; exit 1; }
 
 # ── clone repo if not present ────────────────
 if [ ! -d "$DOTFILES" ]; then
@@ -29,7 +30,8 @@ fi
 # ── install homebrew if missing ───────────────
 if ! command -v brew &>/dev/null; then
   echo "Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  homebrew_installer=$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh) || die "Homebrew installer download failed"
+  /bin/bash -c "$homebrew_installer" || die "Homebrew installation failed"
   info "Homebrew installed"
 else
   info "Homebrew already installed"
@@ -38,36 +40,51 @@ fi
 # ── install brew packages ─────────────────────
 if command -v brew &>/dev/null; then
   echo "Installing Homebrew packages..."
-  brew bundle --file="$DOTFILES/Brewfile"
+  brew bundle --file="$DOTFILES/Brewfile" || die "Homebrew package installation failed"
   info "Packages installed"
 else
-  warn "Homebrew not found, skipping package install"
+  die "Homebrew not found on PATH; cannot install packages"
 fi
 
 # ── stow dotfiles ────────────────────────────
 # Back up any real files/dirs that would conflict with stow-managed symlinks
 BACKUP="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
-conflict_output=$(stow --dir="$DOTFILES" --target="$HOME" -n . 2>&1)
+command -v stow &>/dev/null || die "stow not found on PATH"
+conflict_status=0
+conflict_output=$(stow --dir="$DOTFILES" --target="$HOME" -n . 2>&1) || conflict_status=$?
 conflicts=$(echo "$conflict_output" | grep "existing target is neither a link" | sed 's/.*: //')
 
+if [ "$conflict_status" -ne 0 ] && [ -z "$conflicts" ]; then
+  printf '%s\n' "$conflict_output" >&2
+  die "Stow conflict check failed"
+fi
+
 if [ -n "$conflicts" ]; then
-  mkdir -p "$BACKUP"
+  mkdir -p "$BACKUP" || die "Could not create backup directory: $BACKUP"
   warn "Conflicting files found — backing up to $BACKUP"
   while IFS= read -r file; do
     src="$HOME/$file"
     dst="$BACKUP/$file"
     if [ -e "$src" ]; then
-      mkdir -p "$(dirname "$dst")"
-      mv "$src" "$dst" && info "Backed up ~/$file"
+      mkdir -p "$(dirname "$dst")" || die "Could not create backup directory for ~/$file"
+      mv "$src" "$dst" || die "Could not back up ~/$file"
+      info "Backed up ~/$file"
+    else
+      die "Conflicting file is missing or inaccessible: ~/$file"
     fi
   done <<< "$conflicts"
 fi
 
-stow --dir="$DOTFILES" --target="$HOME" . && info "Dotfiles linked" || error "stow failed"
+stow --dir="$DOTFILES" --target="$HOME" . || die "stow failed"
+info "Dotfiles linked"
 
 # ── update yazi plugins ───────────────────────
 if command -v ya &>/dev/null; then
-  ya pkg upgrade && info "Yazi plugins updated"
+  if ya pkg upgrade; then
+    info "Yazi plugins updated"
+  else
+    warn "Yazi plugin update failed; dotfiles installation completed"
+  fi
 else
   warn "ya not found, skipping yazi plugin update"
 fi
