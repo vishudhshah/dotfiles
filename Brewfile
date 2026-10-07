@@ -2,7 +2,6 @@
 # to uninstall formula/cask and all related files
 
 # taps
-tap "felixkratz/formulae"  # sketchybar
 tap "matthewod11-stack/tools"  # ghostty-ai-themes
 tap "oven-sh/bun"
 tap "thusvill/livewallpaper"
@@ -31,7 +30,6 @@ brew "pandoc"  # document converter
 brew "rich-cli"  # used by rich-preview.yazi
 brew "ripgrep"  # better grep
 brew "sevenzip"  # file archiver/compressor
-brew "sketchybar"
 brew "spotify_player"  # Spotify CLI player
 brew "stow"  # dotfiles manager
 brew "tlrc"  # better man pages (rust tldr)

@@ -27,7 +27,6 @@ To add a new app's config:
 - `Brewfile` — all Homebrew packages and casks
 - `.config/nvim/` — Neovim config (NvChad v2.5 base, lazy.nvim plugin manager)
 - `.config/ghostty/` — Ghostty terminal config
-- `.config/sketchybar/` — macOS menu bar replacement
 - `.config/lazygit/` — lazygit TUI config
 - `.config/yazi/` — yazi file manager config
 
