@@ -103,12 +103,15 @@ install_zsh_dependency "fast-syntax-highlighting" "https://github.com/zdharma-co
 install_zsh_dependency "zsh-sage" "https://github.com/UtsavMandal2022/zsh-sage.git" "$omz_custom/plugins/zsh-sage" "zsh-sage.plugin.zsh"
 
 # ── stow dotfiles ────────────────────────────
-# Back up any real files/dirs that would conflict with stow-managed symlinks
+# Back up real files/dirs and symlinks that conflict with Stow-managed links.
 BACKUP="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 command -v stow &>/dev/null || die "stow not found on PATH"
 conflict_status=0
-conflict_output=$(stow --dir="$DOTFILES" --target="$HOME" -n . 2>&1) || conflict_status=$?
-conflicts=$(echo "$conflict_output" | grep "existing target is neither a link" | sed 's/.*: //')
+conflict_output=$(LC_ALL=C stow --dir="$DOTFILES" --target="$HOME" -n . 2>&1) || conflict_status=$?
+conflicts=$(printf '%s\n' "$conflict_output" | sed -n \
+  -e 's/^  \* cannot stow .* over existing target \(.*\) since neither a link nor a directory and --adopt not specified$/\1/p' \
+  -e 's/^  \* existing target is neither a link nor a directory: //p' \
+  -e 's/^  \* existing target is not owned by stow: //p')
 
 if [ "$conflict_status" -ne 0 ] && [ -z "$conflicts" ]; then
   printf '%s\n' "$conflict_output" >&2
@@ -121,7 +124,7 @@ if [ -n "$conflicts" ]; then
   while IFS= read -r file; do
     src="$HOME/$file"
     dst="$BACKUP/$file"
-    if [ -e "$src" ]; then
+    if [ -e "$src" ] || [ -L "$src" ]; then
       mkdir -p "$(dirname "$dst")" || die "Could not create backup directory for ~/$file"
       mv "$src" "$dst" || die "Could not back up ~/$file"
       info "Backed up ~/$file"
@@ -129,6 +132,12 @@ if [ -n "$conflicts" ]; then
       die "Conflicting file is missing or inaccessible: ~/$file"
     fi
   done <<< "$conflicts"
+fi
+
+# Check again after backups; unsupported conflicts must stop before linking.
+if ! conflict_output=$(LC_ALL=C stow --dir="$DOTFILES" --target="$HOME" -n . 2>&1); then
+  printf '%s\n' "$conflict_output" >&2
+  die "Stow conflict check failed after backups"
 fi
 
 stow --dir="$DOTFILES" --target="$HOME" . || die "stow failed"
