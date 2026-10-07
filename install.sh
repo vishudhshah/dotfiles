@@ -28,14 +28,31 @@ else
 fi
 
 # ── install homebrew if missing ───────────────
-if ! command -v brew &>/dev/null; then
+find_brew() {
+  command -v brew && return 0
+  local candidate
+  for candidate in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+    if [ -x "$candidate" ]; then
+      printf '%s\n' "$candidate"
+      return 0
+    fi
+  done
+  return 1
+}
+
+if ! brew_bin=$(find_brew); then
   echo "Installing Homebrew..."
   homebrew_installer=$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh) || die "Homebrew installer download failed"
   /bin/bash -c "$homebrew_installer" || die "Homebrew installation failed"
+  brew_bin=$(find_brew) || die "Homebrew installed but its executable could not be found"
   info "Homebrew installed"
 else
   info "Homebrew already installed"
 fi
+
+# The installer runs in a child shell; initialize this shell explicitly.
+homebrew_env=$("$brew_bin" shellenv bash) || die "Could not initialize Homebrew environment"
+eval "$homebrew_env" || die "Could not apply Homebrew environment"
 
 # ── install brew packages ─────────────────────
 if command -v brew &>/dev/null; then
