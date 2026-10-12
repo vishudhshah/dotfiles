@@ -7,6 +7,15 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
+map("n", "<leader>as", function()
+  local enabled = vim.b.autosave_enabled
+  if enabled == nil then
+    enabled = vim.g.autosave_enabled and vim.bo.filetype ~= "tex"
+  end
+  vim.b.autosave_enabled = not enabled
+  vim.notify("Autosave " .. (vim.b.autosave_enabled and "enabled" or "disabled") .. " for this buffer")
+end, { desc = "Toggle autosave for this buffer" })
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 

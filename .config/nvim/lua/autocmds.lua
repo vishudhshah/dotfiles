@@ -117,13 +117,20 @@ autocmd("FileType", {
 })
 
 -- Autosave all files except .tex
+if vim.g.autosave_enabled == nil then
+  vim.g.autosave_enabled = true
+end
 local autosave_group = vim.api.nvim_create_augroup("AutoSave", { clear = true })
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   group = autosave_group,
   pattern = "*",
   callback = function()
-    if vim.bo.filetype ~= "tex"
+    local enabled = vim.b.autosave_enabled
+    if enabled == nil then
+      enabled = vim.g.autosave_enabled and vim.bo.filetype ~= "tex"
+    end
+    if enabled
       and vim.bo.modifiable
       and vim.bo.buftype == ""
       and vim.fn.expand("%") ~= ""  -- don't try to save unnamed buffers
