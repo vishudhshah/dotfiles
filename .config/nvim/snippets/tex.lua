@@ -438,9 +438,9 @@ $0
         end
       end
       table.insert(nodes, t({ "", "\t\t\\hline", "\t\\end{tabular}" }))
-      table.insert(nodes, t("\n\t\\caption{"))
+      table.insert(nodes, t({ "", "\t\\caption{" }))
       table.insert(nodes, i(idx)); idx = idx + 1
-      table.insert(nodes, t("}\n\t\\label{tab:"))
+      table.insert(nodes, t({ "}", "\t\\label{tab:" }))
       table.insert(nodes, i(idx))
       table.insert(nodes, t({ "}", "\\end{table}" }))
       return sn(nil, nodes)
