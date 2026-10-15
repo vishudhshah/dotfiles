@@ -315,8 +315,9 @@ $0]]),
   autosnip_math("cal", [[\mathcal{$1}]]),
   autosnip(         "bbb", [[\textbf{$1}]]),
   autosnip_not_math("iii", [[\textit{$1}]]),
-  autosnip_math("jj", [[_j]]),
-  autosnip_math("kk", [[_k]]),
+  autosnip_math("ui", [[_i]]),
+  autosnip_math("uj", [[_j]]),
+  autosnip_math("uk", [[_k]]),
 
   -- ── SymPy evaluation ─────────────────────────────────────────────────────
   autosnip_math("sympy", [[sympy $1 sympy]]),
@@ -416,9 +417,9 @@ $0
       local ncol = tonumber(snip.captures[2])
       if not nrow or not ncol then return sn(nil, { i(0) }) end
       local nodes = {}
-      local col_spec = string.rep("c|", ncol - 1) .. "c"
+      local col_spec = "|" .. string.rep("c|", ncol)
       table.insert(nodes, t({
-        "\\begin{table}[h]",
+        "\\begin{table}[H]",
         "\t\\centering",
         "\t\\begin{tabular}{" .. col_spec .. "}",
         "\t\t\\hline",
@@ -438,6 +439,48 @@ $0
         end
       end
       table.insert(nodes, t({ "", "\t\t\\hline", "\t\\end{tabular}" }))
+      table.insert(nodes, t({ "", "\t\\caption{" }))
+      table.insert(nodes, i(idx)); idx = idx + 1
+      table.insert(nodes, t({ "}", "\t\\label{tab:" }))
+      table.insert(nodes, i(idx))
+      table.insert(nodes, t({ "}", "\\end{table}" }))
+      return sn(nil, nodes)
+    end),
+  }, { condition = at_line_start_not_math }),
+
+  s({
+    trig = "btable (%d+) (%d+)",
+    regTrig = true,
+    dscr = "Booktabs table (N rows × M cols)",
+    snippetType = "autosnippet",
+  }, {
+    d(1, function(_, snip)
+      local nrow = tonumber(snip.captures[1])
+      local ncol = tonumber(snip.captures[2])
+      if not nrow or not ncol then return sn(nil, { i(0) }) end
+      local nodes = {}
+      local col_spec = string.rep("c", ncol)
+      table.insert(nodes, t({
+        "\\begin{table}[H]",
+        "\t\\centering",
+        "\t\\begin{tabular}{" .. col_spec .. "}",
+        "\t\t\\toprule",
+        "\t\t",
+      }))
+      local idx = 1
+      for row = 1, nrow do
+        for col = 1, ncol do
+          table.insert(nodes, i(idx)); idx = idx + 1
+          if col < ncol then table.insert(nodes, t(" & ")) end
+        end
+        table.insert(nodes, t(" \\\\"))
+        if row == 1 and row < nrow then
+          table.insert(nodes, t({ "", "\t\t\\midrule", "\t\t" }))
+        elseif row < nrow then
+          table.insert(nodes, t({ "", "\t\t" }))
+        end
+      end
+      table.insert(nodes, t({ "", "\t\t\\bottomrule", "\t\\end{tabular}" }))
       table.insert(nodes, t({ "", "\t\\caption{" }))
       table.insert(nodes, i(idx)); idx = idx + 1
       table.insert(nodes, t({ "}", "\t\\label{tab:" }))
@@ -536,19 +579,14 @@ $0
   -- ── Fractions ────────────────────────────────────────────────────────────
   autosnip_math("//", [[\frac{$1}{$2}$0]]),
 
-  s({ trig = "(%d+)/", regTrig = true, wordTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = [[((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/]], trigEngine = "ecma", wordTrig = true, snippetType = "autosnippet" }, {
     f(function(_, snip) return "\\frac{" .. snip.captures[1] .. "}" end),
     t("{"), i(1), t("}"), i(0),
   }, { condition = in_math }),
 
-  s({ trig = "(%d*\\?[%a][%w%^%_%{%}\\]*)/" , regTrig = true, wordTrig = true, snippetType = "autosnippet" }, {
-    f(function(_, snip) return "\\frac{" .. snip.captures[1] .. "}" end),
-    t("{"), i(1), t("}"), i(0),
-  }, { condition = in_math }),
-
-  s({ trig = "(.-)%)/", regTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = [[^.*\)/]], trigEngine = "ecma", wordTrig = true, snippetType = "autosnippet" }, {
     f(function(_, snip)
-      local str = snip.captures[1] .. ")"  -- re-attach ) consumed by trigger
+      local str = snip.trigger:sub(1, -2)  -- remove the trailing slash
       local depth = 0
       local start_idx = #str
       for idx = #str, 1, -1 do
@@ -688,8 +726,8 @@ $0
   autosnip_math("dag",    [[\dag]]),
   autosnip_math("ubrace", [[\underbrace{$1}_{${2:label}}$0]]),
   autosnip_math("fn",     [[$1 \colon $2 \to $0]]),
-  autosnip_math("tag",  [[\tag{$1}$0]]),
-  autosnip_math("tag*", [[\tag*{$1}$0]]),
+  autosnip_math("tg",  [[\tag{$1}$0]]),
+  autosnip_math("tg*", [[\tag*{$1}$0]]),
 
   autosnip_math("case", [[\begin{cases}
     $0
