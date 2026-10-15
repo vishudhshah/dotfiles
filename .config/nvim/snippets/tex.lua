@@ -491,8 +491,9 @@ $0
   }, { condition = at_line_start_not_math }),
 
   s({
-    trig = "ary (%d+) (%d+)",
+    trig = "ary ([1-9]%d*) ([1-9]%d*)",
     regTrig = true,
+    wordTrig = false,
     dscr = "Array (N rows × M cols)",
     snippetType = "autosnippet",
   }, {
@@ -518,8 +519,9 @@ $0
   }, { condition = in_math }),
 
   s({
-    trig = "mat (%d+) (%d+)",
+    trig = "mat ([1-9]%d*) ([1-9]%d*)",
     regTrig = true,
+    wordTrig = false,
     dscr = "Matrix (N rows × M cols)",
     snippetType = "autosnippet",
     priority = 2000,
@@ -554,13 +556,13 @@ $0
   autosnip_math("col", [[\begin{bmatrix} $1 \end{bmatrix}$0]]),
 
   -- ── Auto subscripts (regex, math) ────────────────────────────────────────
-  s({ trig = "([A-Za-z])(%d)", regTrig = true, wordTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = "([A-Za-z])(%d)", regTrig = true, wordTrig = false, snippetType = "autosnippet" }, {
     f(function(_, snip) return snip.captures[1] end),
     t("_"),
     f(function(_, snip) return snip.captures[2] end),
   }, { condition = in_math }),
 
-  s({ trig = "([A-Za-z])_(%-?%d%d)", regTrig = true, wordTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = "([A-Za-z])_(%-?%d%d)", regTrig = true, wordTrig = false, snippetType = "autosnippet" }, {
     f(function(_, snip) return snip.captures[1] end),
     t("_{"),
     f(function(_, snip) return snip.captures[2] end),
@@ -579,12 +581,12 @@ $0
   -- ── Fractions ────────────────────────────────────────────────────────────
   autosnip_math("//", [[\frac{$1}{$2}$0]]),
 
-  s({ trig = [[((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/]], trigEngine = "ecma", wordTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = [[((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/]], trigEngine = "ecma", wordTrig = false, snippetType = "autosnippet" }, {
     f(function(_, snip) return "\\frac{" .. snip.captures[1] .. "}" end),
     t("{"), i(1), t("}"), i(0),
   }, { condition = in_math }),
 
-  s({ trig = [[^.*\)/]], trigEngine = "ecma", wordTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = [[^.*\)/]], trigEngine = "ecma", wordTrig = false, snippetType = "autosnippet" }, {
     f(function(_, snip)
       local str = snip.trigger:sub(1, -2)  -- remove the trailing slash
       local depth = 0
@@ -603,22 +605,22 @@ $0
   }, { condition = in_math }),
 
   -- ── Decorators: postfix then plain (regex must come first) ───────────────
-  s({ trig = "([%\\]?%w+)(,%.%s*|%.,%s*)", regTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = [[(\\?\w+)(,\.|\.,)]], trigEngine = "ecma", wordTrig = false, snippetType = "autosnippet" }, {
     f(function(_, snip) return "\\vec{" .. snip.captures[1] .. "}" end),
   }, { condition = in_math }),
-  s({ trig = "([a-zA-Z])vec",  regTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = "([a-zA-Z])vec",  regTrig = true, wordTrig = false, snippetType = "autosnippet" }, {
     f(function(_, snip) return "\\vec{" .. snip.captures[1] .. "}" end)
   }, { condition = in_math }),
-  s({ trig = "([a-zA-Z])bar",  regTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = "([a-zA-Z])bar",  regTrig = true, wordTrig = false, snippetType = "autosnippet" }, {
     f(function(_, snip) return "\\bar{" .. snip.captures[1] .. "}" end)
   }, { condition = in_math }),
-  s({ trig = "([a-zA-Z])hat",  regTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = "([a-zA-Z])hat",  regTrig = true, wordTrig = false, snippetType = "autosnippet" }, {
     f(function(_, snip) return "\\hat{" .. snip.captures[1] .. "}" end)
   }, { condition = in_math }),
-  s({ trig = "([a-zA-Z])tild", regTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = "([a-zA-Z])tild", regTrig = true, wordTrig = false, snippetType = "autosnippet" }, {
     f(function(_, snip) return "\\tilde{" .. snip.captures[1] .. "}" end)
   }, { condition = in_math }),
-  s({ trig = "([a-zA-Z])line", regTrig = true, snippetType = "autosnippet" }, {
+  s({ trig = "([a-zA-Z])line", regTrig = true, wordTrig = false, snippetType = "autosnippet" }, {
     f(function(_, snip) return "\\overline{" .. snip.captures[1] .. "}" end)
   }, { condition = in_math }),
 
@@ -627,7 +629,6 @@ $0
   autosnip_math("hat",  [[\hat{$1}$0]]),
   autosnip_math("tild", [[\tilde{$1}$0]]),
   autosnip_math("line", [[\overline{$1}$0]]),
-
   -- ── Dots ─────────────────────────────────────────────────────────────────
   autosnip(      "c...", [[\cdots]]),
   autosnip(      "d...", [[\ddots]]),
@@ -667,8 +668,10 @@ $0
   autosnip_math("nn",  [[\cap ]]),
   autosnip_math("OO",  [[\varnothing]]),
   autosnip_math("||",  [[\mid ]]),
-  autosnip_math("UU",  [[\bigcup_{${1:i \in }${2: I}} $0]]),
-  autosnip_math("NN",  [[\bigcap_{${1:i \in }${2: I}} $0]]),
+  s({ trig = "UU", wordTrig = false, snippetType = "autosnippet" }, ls.parser.parse_snippet(nil,
+    [[\\bigcup_{${1:i \\in ${2: I}}} $0]]), { condition = in_math }),
+  s({ trig = "NN", wordTrig = false, snippetType = "autosnippet" }, ls.parser.parse_snippet(nil,
+    [[\\bigcap_{${1:i \\in ${2: I}}} $0]]), { condition = in_math }),
 
   -- ── Quantifiers / operators (iA, math) ───────────────────────────────────
   autosnip_math("EE",  [[\exists ]]),
@@ -695,8 +698,8 @@ $0
   autosnip_math("ppprod", [[\prod_{${1:n}=${2:1}}^{${3:\infty}} $0]], { word = true }),
   autosnip_math("pprod",  [[\prod_{$1} $0]],                          { word = true }),
   autosnip_math("prod",   [[\prod ]],                                  { word = true }),
-  -- taylor: 2nd and 3rd $1 auto-become rep(1)
-  autosnip_math("taylor", [[\sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_}$1 (x-a)^$1 $0]], { word = true }),
+  s({ trig = "taylor", wordTrig = true, snippetType = "autosnippet" }, ls.parser.parse_snippet(nil,
+    [[\\sum_{${1:k}=${2:0}}^{${3:\\infty}} ${4:c_$1} (x-a)^$1 $0]]), { condition = in_math }),
   autosnip_math("lsup",   [[\limsup]], { word = true }),
   autosnip_math("linf",   [[\liminf]], { word = true }),
   autosnip_math("par",    [[\partial]], { word = true }),
