@@ -29,6 +29,8 @@ _darcs
 Brewfile
 install\.sh
 CLAUDE\.md
+AGENTS\.md
 TODO\.md
 ^/\.env\.example$
 \.DS_Store
+.*\.log

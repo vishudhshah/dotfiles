@@ -318,6 +318,7 @@ $0]]),
   autosnip_math("ui", [[_i]]),
   autosnip_math("uj", [[_j]]),
   autosnip_math("uk", [[_k]]),
+  autosnip_math("un", [[_n]]),
 
   -- ── SymPy evaluation ─────────────────────────────────────────────────────
   autosnip_math("sympy", [[sympy $1 sympy]]),
