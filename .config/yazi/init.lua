@@ -11,8 +11,8 @@ require("git"):setup {
 
 -- full-border plugin
 require("full-border"):setup {
-	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
-	type = ui.Border.ROUNDED,
+	-- Available values: "rounded", "plain"
+	set = "rounded",
 }
 
 -- Show symlink in status bar
