@@ -13,6 +13,8 @@ alias spotify=spotify_player
 alias tree='eza --icons --tree'
 alias vi=nvim
 alias vim=nvim
+# Ghostty 1.4: installs xterm-ghostty terminfo on remote hosts, forwards COLORTERM etc.
+alias ssh='ghostty +ssh --'
 
 # Telegram expenses bot
 alias expenses-logs='tail -f ~/Library/Logs/expenses-bot.log'
