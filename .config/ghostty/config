@@ -28,6 +28,7 @@ font-family-bold-italic = MonaspiceRn NFM
 font-feature = calt, liga, ss01, ss02, ss03, ss04, ss09, cv01=2, cv02=1, cv10=1, cv19=1, cv31=1
 font-thicken = true
 adjust-cell-height = 20%
+adjust-cursor-height = 20%
 
 
 # ─── Window ───
@@ -48,6 +49,7 @@ quit-after-last-window-closed = true
 window-padding-balance = true
 # srgb looked washed out
 window-colorspace = display-p3
+copy-on-select = both
 
 
 # ─── Shell integration ───

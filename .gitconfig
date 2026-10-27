@@ -13,7 +13,7 @@
   colorMoved = default
 
 [core]
-  pager = delta --dark --line-numbers --side-by-side
+  pager = delta --dark --line-numbers # --side-by-side
 
 [interactive]
   diffFilter = delta --color-only
