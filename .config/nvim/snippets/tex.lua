@@ -180,11 +180,11 @@ end
 return {
 
   -- ── Lua / meta ───────────────────────────────────────────────────────────
-  autosnip_line("blua",  [[\begin{luacode*}
+  autosnip_line("blua", [[\begin{luacode*}
     $0
 \end{luacode*}]]),
-  autosnip("lua",   [[\luaexec{$1}]]),
-  autosnip_line("evan",  [[\usepackage[sexy]{evan}]]),
+  autosnip("lua", [[\luaexec{$1}]], { word = true }),
+  autosnip_line("evan", [[\usepackage[sexy]{evan}]]),
   autosnip("today", [[\today]]),
 
   s({ trig = "date",  snippetType = "autosnippet" }, { f(function() return iso_date() end) }),
@@ -634,6 +634,7 @@ $0
   autosnip(      "c...", [[\cdots]]),
   autosnip(      "d...", [[\ddots]]),
   autosnip(      "l...", [[\ldots]]),
+  autosnip(      "v...", [[\vdots]]),
   autosnip_math( "...",  [[\dots]]),
 
   -- ── Logic / relations (iA, math) ─────────────────────────────────────────
