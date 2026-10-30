@@ -368,7 +368,7 @@ print(latex(parse_latex(expr).doit()), end='')
   autosnip_line("defn",  [[\begin{definition}[$1]
     $0
 \end{definition}]]),
-  autosnip_line("thm",   [[\begin{theorem}
+  autosnip_line("thm",   [[\begin{theorem}[$1]
     $0
 \end{theorem}]]),
   autosnip_line("lem",   [[\begin{lemma}

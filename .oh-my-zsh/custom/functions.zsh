@@ -66,6 +66,17 @@ whisper() {
   rm "${1%.*}.wav"
 }
 
+# Transcribe video to SRT subtitles using Parakeet TDT v3 (MLX)
+parakeet() {
+  ffmpeg -i "$1" -ar 16000 -ac 1 -c:a pcm_s16le "${1%.*}.wav" 2>/dev/null && \
+  parakeet-mlx \
+    "${1%.*}.wav" \
+    --output-format srt \
+    --output-template '{parent}/{filename}' \
+    --max-words 10 --max-duration 5 --silence-gap 1.0 -v 2>/dev/null && \
+  rm "${1%.*}.wav"
+}
+
 # Update custom zsh plugins
 update-zsh-plugins() {
   for d in ~/.oh-my-zsh/custom/plugins/*/; do
