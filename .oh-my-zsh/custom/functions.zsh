@@ -51,7 +51,7 @@ function y() {
 
 # Git add, commit and push in one command
 gacp() {
-  ga . && git commit -m "$*" && gp
+  ga -A && git commit -m "$*" && gp
 }
 
 # Transcribe video to SRT subtitles using whisper.cpp

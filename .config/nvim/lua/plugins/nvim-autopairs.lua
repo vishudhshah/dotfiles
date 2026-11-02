@@ -5,6 +5,7 @@ return {
   config = function()
     local autopairs = require('nvim-autopairs')
     local Rule = require('nvim-autopairs.rule')
+    local cond = require('nvim-autopairs.conds')
 
     autopairs.setup({
       fast_wrap = {},
@@ -20,6 +21,10 @@ return {
         return vim.bo.filetype ~= 'tex' and vim.bo.filetype ~= 'latex'
       end),
       Rule('`', "'", { 'tex', 'latex' }),
+      -- * auto-pairs only when not right after a word char (start emphasis, not in-word *)
+      Rule('*', '*', { 'markdown' })
+        :with_pair(cond.not_before_regex('[%w\\-]'))
+        :with_move(cond.move_right()),
     })
   end,
 }
