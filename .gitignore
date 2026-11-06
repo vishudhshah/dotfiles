@@ -4,8 +4,9 @@
 # spotify-player (has client id)
 app.toml
 
-# whisper models
+# transcription models
 *.bin
+parakeet-tdt-0.6b-v3/
 
 # secrets / env vars
 .env

@@ -59,7 +59,7 @@ whisper() {
   ffmpeg -i "$1" -ar 16000 -ac 1 -c:a pcm_s16le "${1%.*}.wav" 2>/dev/null && \
   whisper-cli \
     -f "${1%.*}.wav" \
-    -m ~/.config/whisper-models/ggml-large-v3-turbo.bin \
+    -m ~/.config/transcribe-models/ggml-large-v3-turbo.bin \
     -osrt \
     --no-prints \
     -of "${1%.*}" 2>/dev/null && \
@@ -71,6 +71,7 @@ parakeet() {
   ffmpeg -i "$1" -ar 16000 -ac 1 -c:a pcm_s16le "${1%.*}.wav" 2>/dev/null && \
   parakeet-mlx \
     "${1%.*}.wav" \
+    --model ~/.config/transcribe-models/parakeet-tdt-0.6b-v3 \
     --output-format srt \
     --output-template '{parent}/{filename}' \
     --max-words 10 --max-duration 5 --silence-gap 1.0 -v 2>/dev/null && \
