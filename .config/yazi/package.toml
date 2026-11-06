@@ -1,16 +1,16 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "e0bbd20"
+rev = "c0529fc"
 hash = "347cc6b190eb0c2fd60513cc7ae37412"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "e0bbd20"
+rev = "c0529fc"
 hash = "17ebde15c4349f90aedbc45984b98db2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:vcs-files"
-rev = "e0bbd20"
+rev = "c0529fc"
 hash = "4f2a05edce73aef2bceb2ee2c134c8f2"
 
 [[plugin.deps]]
@@ -20,12 +20,12 @@ hash = "33982a6e2d6df07619a2a0fc163a0950"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "e0bbd20"
+rev = "c0529fc"
 hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-paste"
-rev = "e0bbd20"
+rev = "c0529fc"
 hash = "5be02722d97561b6f7aec22429aa00be"
 
 [flavor]
