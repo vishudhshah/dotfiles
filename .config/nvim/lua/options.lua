@@ -40,3 +40,6 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Always keep cursor centered vertically
 vim.opt.scrolloff = 999
+
+-- scroll by 1 line (default is 3)
+vim.opt.mousescroll = "ver:1"
