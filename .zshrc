@@ -1,6 +1,7 @@
-# lig pre
+# >>> lig pre >>>
 # eval "$("/opt/homebrew/opt/lig/bin/lig" init zsh pre)"
-eval "$(lig init zsh pre)"
+eval "$(lig init zsh pre)"  # forked build
+# <<< lig pre <<<
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
@@ -66,10 +67,11 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  git
   you-should-use
-  # fzf-tab
+  # fzf-tab  # replaced by lig
   fast-syntax-highlighting
-  zsh-sage
+  # zsh-sage  # replaced by deja
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -110,16 +112,11 @@ fi
 # Set default theme for bat (syntax highlighting for cat)
 export BAT_THEME="ansi"
 
-eval "$(zoxide init --cmd cd zsh)"
-
 # Cheat sheet (F1)
 bindkey -s '^[OP' 'cheat\n'
 
 # ghostty-ai-themes config
 # source "/opt/homebrew/share/ghostty-ai-themes.zsh"
-
-# 1Password shell completion
-eval "$(op completion zsh)"; compdef _op op
 
 # Auto-update zsh custom plugins weekly
 _plugin_update_stamp="$HOME/.cache/zsh-plugins-updated"
@@ -162,9 +159,24 @@ fi
 # Tab title: current directory (starship doesn't set titles; p10k used to)
 precmd() { print -Pn "\e]0;%~\a" }
 
-# lig post
+# deja
+if [[ -r "$HOME/.local/share/deja/init.zsh" ]]; then
+  source "$HOME/.local/share/deja/init.zsh"
+else
+  eval "$(deja init zsh)"
+fi
+
+# 1Password shell completion
+eval "$(op completion zsh)"; compdef _op op
+
+eval "$(zoxide init --cmd cd zsh)"
+
+eval "$(atuin init zsh)"
+
+# >>> lig post >>>
 # eval "$("/opt/homebrew/opt/lig/bin/lig" init zsh post)"
-eval "$(lig init zsh post)"
+eval "$(lig init zsh post)"  # forked build
+# <<< lig post <<<
 
 # Starship prompt
 source "$HOME/.config/starship.zsh"

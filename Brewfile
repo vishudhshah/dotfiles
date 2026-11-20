@@ -8,10 +8,12 @@ tap "thusvill/livewallpaper"
 tap "tmuxpack/tpack"
 
 # formulae
+brew "atuin"  # shell history manager
 brew "bat"  # better cat
 brew "btop"  # resource monitor
 brew "bun"  # JavaScript runtime
 brew "chafa"  # terminal image viewer
+brew "deja"  # zsh-autosuggestions replacement
 brew "eza"  # better ls
 brew "fastfetch"  # system info
 brew "fd"  # better find

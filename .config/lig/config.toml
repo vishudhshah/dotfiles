@@ -3,3 +3,9 @@ height = 12
 
 [behavior]
 show_hidden_files = true
+
+[keys]
+# atuin owns ctrl-r
+history = []
+# deja owns tab
+next = ["down", "ctrl-n"]
