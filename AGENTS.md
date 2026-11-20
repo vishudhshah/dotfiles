@@ -34,4 +34,4 @@ NvChad v2.5 base + lazy.nvim. `init.lua` is the entry point; `lua/plugins/` has 
 - **`stow --adopt` is destructive**: it pulls the live `~/` file's content over the repo copy. Confirm which side holds the wanted content first.
 - **Secrets are gitignored but stowed**: `.env` → `~/.env` (sourced by `.zshrc`) and `.config/spotify-player/app.toml` (has client IDs) must never be committed. `app.toml.example` and `.env.example` are the tracked templates. Whisper models (`*.bin`) are also ignored.
 - **tmux plugins** under `.config/tmux/plugins/` are vendored upstream clones tracked in the repo — never edit their internals; update the plugin, not the files.
-- Machine-local files that must NOT be added to the repo: `~/.p10k.zsh`, `nvim.log`.
+- Machine-local files that must NOT be added to the repo include `nvim.log`.

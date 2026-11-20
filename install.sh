@@ -96,7 +96,6 @@ install_zsh_dependency() {
   info "$name installed"
 }
 
-install_zsh_dependency "Powerlevel10k" "https://github.com/romkatv/powerlevel10k.git" "$omz_custom/themes/powerlevel10k" "powerlevel10k.zsh-theme"
 install_zsh_dependency "you-should-use" "https://github.com/MichaelAquilina/zsh-you-should-use.git" "$omz_custom/plugins/you-should-use" "you-should-use.plugin.zsh"
 install_zsh_dependency "fzf-tab" "https://github.com/Aloxaf/fzf-tab.git" "$omz_custom/plugins/fzf-tab" "fzf-tab.plugin.zsh"
 install_zsh_dependency "fast-syntax-highlighting" "https://github.com/zdharma-continuum/fast-syntax-highlighting.git" "$omz_custom/plugins/fast-syntax-highlighting" "fast-syntax-highlighting.plugin.zsh"

@@ -24,6 +24,7 @@ brew "git-delta"  # better git diff
 brew "imagemagick"  # image manipulation
 brew "jq"  # JSON processor
 brew "lazygit"  # git TUI
+brew "kevengoncalves/tap/lig"  # zsh-autocomplete/fzf-tab replacement
 brew "neovim"
 brew "node"
 brew "pandoc"  # document converter
@@ -31,6 +32,7 @@ brew "rich-cli"  # used by rich-preview.yazi
 brew "ripgrep"  # better grep
 brew "sevenzip"  # file archiver/compressor
 brew "spotify_player"  # Spotify CLI player
+brew "starship"  # shell prompt (p10k replacement)
 brew "stow"  # dotfiles manager
 brew "terminal-notifier"  # Spotify track-change notifications
 brew "tlrc"  # better man pages (rust tldr)

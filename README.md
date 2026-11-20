@@ -47,7 +47,7 @@ The script will:
 
 - Find Homebrew on PATH or at either macOS prefix, install it if missing, and initialize its shell environment
 - Install all packages listed in `Brewfile` via `brew bundle`
-- Install missing Oh My Zsh, Powerlevel10k, and the custom plugins `you-should-use`, `fzf-tab`, `fast-syntax-highlighting`, and `zsh-sage`
+- Install missing Oh My Zsh and the custom plugins `you-should-use`, `fzf-tab`, `fast-syntax-highlighting`, and `zsh-sage`
 - Preserve existing shell dependencies; stop with a repair message if an installation is incomplete
 - Back up conflicting files and unmanaged symlinks (including broken links) to `~/.dotfiles-backup-<timestamp>`
 - Symlink all configs via `stow .`
@@ -56,8 +56,8 @@ The script will:
 Required failures stop the script with a nonzero exit status. A failed optional
 Yazi upgrade produces a warning. Oh My Zsh installation preserves an existing
 `.zshrc` and does not change the default shell or launch a shell during setup.
-The framework, plugins, and theme live in `~/.oh-my-zsh`; this repo supplies
-the custom aliases and functions. Plugins/themes use `ZSH_CUSTOM` if set.
+The framework and plugins live in `~/.oh-my-zsh`. This repo supplies the
+custom aliases and functions. Custom plugins use `ZSH_CUSTOM` if set.
 
 ### 3. After the script
 
@@ -65,9 +65,6 @@ Open a new terminal or restart as a login shell to load `.zprofile` and `.zshrc`
 ```bash
 exec zsh -l
 ```
-
-Run `p10k configure` to customize the prompt. The generated `~/.p10k.zsh`
-is machine-local and is not included in this repo.
 
 #### Neovim
 

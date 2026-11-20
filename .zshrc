@@ -1,10 +1,6 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-# This was causing artefacts when resizing windows/panes
+# lig pre
+# eval "$("/opt/homebrew/opt/lig/bin/lig" init zsh pre)"
+eval "$(lig init zsh pre)"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
@@ -12,17 +8,8 @@ fi
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# Starship provides the prompt.
+ZSH_THEME=""
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -79,9 +66,8 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
   you-should-use
-  fzf-tab
+  # fzf-tab
   fast-syntax-highlighting
   zsh-sage
 )
@@ -121,13 +107,6 @@ fi
 # aliases → ~/.oh-my-zsh/custom/aliases.zsh
 # functions → ~/.oh-my-zsh/custom/functions.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
-# --- P10K End ---
-
-
 # Set default theme for bat (syntax highlighting for cat)
 export BAT_THEME="ansi"
 
@@ -158,9 +137,6 @@ if [[ -n "$TMUX" ]]; then
   export CLAUDE_CODE_TMUX_TRUECOLOR=1
 fi
 
-# Hermes Agent — ensure ~/.local/bin is on PATH
-export PATH="$HOME/.local/bin:$PATH"
-
 # Composio CLI
 export COMPOSIO_INSTALL_DIR="/Users/vishudh/.composio"
 export PATH="$COMPOSIO_INSTALL_DIR:$PATH"
@@ -177,9 +153,15 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 # preview directory's content with eza when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --icons --color=always $realpath'
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'bat --style=numbers --color=always $realpath 2>/dev/null || eza -1 --icons --color=always $realpath 2>/dev/null'
-
 # Popup mode — only inside tmux (>=3.2), falls back to inline fzf otherwise
 if [[ -n "$TMUX" ]]; then
   zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
   zstyle ':fzf-tab:*' popup-min-size 60 15
 fi
+
+# lig post
+# eval "$("/opt/homebrew/opt/lig/bin/lig" init zsh post)"
+eval "$(lig init zsh post)"
+
+# Starship prompt
+source "$HOME/.config/starship.zsh"

@@ -1,0 +1,5 @@
+[ui]
+height = 12
+
+[behavior]
+show_hidden_files = true

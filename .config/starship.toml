@@ -1,0 +1,103 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Rainbow prompt with the clock and command indicators on Zsh's input line.
+add_newline = false
+format = '''
+$os$directory([$git_branch$git_commit$git_state$git_status ](bg:green)[](fg:green))
+$character'''
+right_format = '$status$cmd_duration$jobs$direnv$conda$python$nix_shell$time'
+
+[os]
+disabled = false
+format = '[ $symbol ]($style)'
+style = 'fg:232 bg:white'
+
+[os.symbols]
+Macos = ''
+
+[directory]
+style = 'fg:254 bg:blue'
+read_only = ' '
+read_only_style = 'fg:254 bg:blue'
+truncation_length = 0
+truncate_to_repo = false
+repo_root_style = 'bold fg:255 bg:blue'
+format = '[](fg:white bg:blue)[ $read_only ](fg:254 bg:blue)[$path ](bold fg:255 bg:blue)[](fg:blue)'
+repo_root_format = '[](fg:white bg:blue)[ $read_only $before_root_path]($style)[$repo_root]($repo_root_style)[$path ]($style)[](fg:blue bg:green)'
+
+[git_branch]
+format = '[ on  $symbol$branch]($style)([:](fg:white bg:green)[$remote_branch]($style))'
+style = 'fg:black bg:green'
+symbol = ' '
+truncation_length = 32
+truncation_symbol = '…'
+
+[git_commit]
+format = '[ on  @$hash]($style)'
+style = 'fg:black bg:green'
+commit_hash_length = 8
+
+[git_state]
+format = '[ $state]($style)'
+style = 'fg:red bg:green'
+
+[git_status]
+format = '[$ahead_behind$stashed$conflicted$staged$modified$untracked]($style)'
+style = 'fg:black bg:green'
+ahead = ' ⇡${count}'
+behind = ' ⇣${count}'
+diverged = ' ⇣${behind_count}⇡${ahead_count}'
+stashed = ' *${count}'
+conflicted = ' ~${count}'
+staged = ' +${count}'
+modified = ' !${count}'
+untracked = ' ?${count}'
+deleted = ' !${count}'
+renamed = ' +${count}'
+
+[status]
+disabled = false
+format = ''
+pipestatus = true
+pipestatus_format = '[](fg:red)[ $pipestatus $symbol ](fg:yellow bg:red)'
+pipestatus_segment_format = '[$status](fg:yellow bg:red)'
+pipestatus_separator = '|'
+symbol = '✘'
+success_symbol = '✔'
+
+[cmd_duration]
+min_time = 3000
+format = '[](fg:yellow)[ took $duration  ](fg:black bg:yellow)'
+
+[jobs]
+format = '[](fg:black)[ $symbol ](fg:cyan bg:black)'
+symbol = ''
+symbol_threshold = 1
+number_threshold = 99999
+
+[direnv]
+disabled = false
+format = '[](fg:black)[ $symbol ](fg:yellow bg:black)'
+symbol = '▼'
+
+[conda]
+format = '[](fg:blue)[ $environment $symbol ](fg:black bg:blue)'
+symbol = ''
+
+[python]
+format = '([](fg:blue)[ $virtualenv $symbol ](fg:black bg:blue))'
+symbol = ''
+
+[nix_shell]
+format = '[](fg:blue)[ $state $symbol ](fg:black bg:blue)'
+symbol = ''
+
+[time]
+disabled = false
+time_format = '%H:%M:%S'
+format = '[](fg:white)[ at $time  ](fg:black bg:white)'
+
+[character]
+success_symbol = '[󰊠](76)'
+error_symbol = '[󰊠](196)'
+vimcmd_symbol = '[❮](76)'
