@@ -159,6 +159,9 @@ if [[ -n "$TMUX" ]]; then
   zstyle ':fzf-tab:*' popup-min-size 60 15
 fi
 
+# Tab title: current directory (starship doesn't set titles; p10k used to)
+precmd() { print -Pn "\e]0;%~\a" }
+
 # lig post
 # eval "$("/opt/homebrew/opt/lig/bin/lig" init zsh post)"
 eval "$(lig init zsh post)"
