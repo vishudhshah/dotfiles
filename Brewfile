@@ -2,6 +2,8 @@
 # to uninstall formula/cask and all related files
 
 # taps
+tap "browseros-ai/tap"
+tap "kevengoncalves/tap"  # lig
 tap "matthewod11-stack/tools"  # ghostty-ai-themes
 tap "oven-sh/bun"
 tap "thusvill/livewallpaper"
@@ -26,7 +28,7 @@ brew "git-delta"  # better git diff
 brew "imagemagick"  # image manipulation
 brew "jq"  # JSON processor
 brew "lazygit"  # git TUI
-brew "kevengoncalves/tap/lig"  # zsh-autocomplete/fzf-tab replacement
+brew "lig"  # zsh-autocomplete/fzf-tab replacement
 brew "neovim"
 brew "node"
 brew "pandoc"  # document converter
@@ -47,6 +49,7 @@ brew "zoxide"  # better cd
 # casks
 cask "1password-cli"  # op shell completion
 cask "boring-notch"  # MacOS notch
+cask "browseros-neo"  # AI-native browser
 cask "copilot-cli"
 cask "font-monaspice-nerd-font"
 cask "grandperspective"  # disk usage visualizer
