@@ -1,6 +1,5 @@
 # >>> lig pre >>>
-# eval "$("/opt/homebrew/opt/lig/bin/lig" init zsh pre)"
-eval "$(lig init zsh pre)"  # forked build
+eval "$(lig init zsh pre)"
 # <<< lig pre <<<
 
 # If you come from bash you might have to change your $PATH.
@@ -174,8 +173,7 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh)"
 
 # >>> lig post >>>
-# eval "$("/opt/homebrew/opt/lig/bin/lig" init zsh post)"
-eval "$(lig init zsh post)"  # forked build
+eval "$(lig init zsh post)"
 # <<< lig post <<<
 
 # Starship prompt
