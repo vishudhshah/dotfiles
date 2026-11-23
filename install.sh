@@ -97,9 +97,7 @@ install_zsh_dependency() {
 }
 
 install_zsh_dependency "you-should-use" "https://github.com/MichaelAquilina/zsh-you-should-use.git" "$omz_custom/plugins/you-should-use" "you-should-use.plugin.zsh"
-install_zsh_dependency "fzf-tab" "https://github.com/Aloxaf/fzf-tab.git" "$omz_custom/plugins/fzf-tab" "fzf-tab.plugin.zsh"
 install_zsh_dependency "fast-syntax-highlighting" "https://github.com/zdharma-continuum/fast-syntax-highlighting.git" "$omz_custom/plugins/fast-syntax-highlighting" "fast-syntax-highlighting.plugin.zsh"
-install_zsh_dependency "zsh-sage" "https://github.com/UtsavMandal2022/zsh-sage.git" "$omz_custom/plugins/zsh-sage" "zsh-sage.plugin.zsh"
 
 # ── stow dotfiles ────────────────────────────
 # Back up real files/dirs and symlinks that conflict with Stow-managed links.

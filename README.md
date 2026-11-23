@@ -47,7 +47,7 @@ The script will:
 
 - Find Homebrew on PATH or at either macOS prefix, install it if missing, and initialize its shell environment
 - Install all packages listed in `Brewfile` via `brew bundle`
-- Install missing Oh My Zsh and the custom plugins `you-should-use`, `fzf-tab`, `fast-syntax-highlighting`, and `zsh-sage`
+- Install missing Oh My Zsh and the custom plugins `you-should-use` and `fast-syntax-highlighting`
 - Preserve existing shell dependencies; stop with a repair message if an installation is incomplete
 - Back up conflicting files and unmanaged symlinks (including broken links) to `~/.dotfiles-backup-<timestamp>`
 - Symlink all configs via `stow .`

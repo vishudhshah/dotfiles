@@ -68,9 +68,7 @@ DISABLE_AUTO_TITLE="true"
 plugins=(
   git
   you-should-use
-  # fzf-tab  # replaced by lig
   fast-syntax-highlighting
-  # zsh-sage  # replaced by deja
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -142,18 +140,6 @@ export PATH="$COMPOSIO_INSTALL_DIR:$PATH"
 
 # othello
 export OTHELLO_GRAPH=1
-
-# fzf-tab config
-# switch groups using `,` and `.`
-zstyle ':fzf-tab:*' switch-group ',' '.'
-# preview directory's content with eza when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --icons --color=always $realpath'
-zstyle ':fzf-tab:complete:*:*' fzf-preview 'bat --style=numbers --color=always $realpath 2>/dev/null || eza -1 --icons --color=always $realpath 2>/dev/null'
-# Popup mode — only inside tmux (>=3.2), falls back to inline fzf otherwise
-if [[ -n "$TMUX" ]]; then
-  zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-  zstyle ':fzf-tab:*' popup-min-size 60 15
-fi
 
 # Tab title: current directory (starship doesn't set titles; p10k used to)
 precmd() { print -Pn "\e]0;%~\a" }
