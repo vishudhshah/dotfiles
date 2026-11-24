@@ -145,6 +145,7 @@ export OTHELLO_GRAPH=1
 precmd() { print -Pn "\e]0;%~\a" }
 
 # deja
+DEJA_CYCLE_KEY='^R'
 if [[ -r "$HOME/.local/share/deja/init.zsh" ]]; then
   source "$HOME/.local/share/deja/init.zsh"
 else

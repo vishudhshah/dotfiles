@@ -5,7 +5,8 @@ height = 12
 show_hidden_files = true
 
 [keys]
-# atuin owns ctrl-r
+# deja owns ctrl-r
 history = []
-# deja owns tab
 next = ["down", "ctrl-n"]
+# tab accepts the highlighted item; enter runs shell command
+accept = ["tab"]
